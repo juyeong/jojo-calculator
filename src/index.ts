@@ -59,11 +59,11 @@ function main() {
     return getState()
       .selectedCharacters.map(char => {
         return `<li class="list-group-item">
-          <div>
-          ${char.name} | ${char.class} | ${char.cost} cost
+          <div style="margin-bottom: 2px;">
+            <strong>${char.name}</strong> | ${char.class} | ${char.cost} cost
           </div>
-          <div>
-          ${char.special30} | ${char.special50} | ${char.special70} | ${char.special90}
+          <div style="font-size: 10px;">
+            ${char.special30} | ${char.special50} | ${char.special70} | ${char.special90}
           </div>
         </li>`;
       })
@@ -79,6 +79,7 @@ function main() {
     maxOptions: 9999,
     options: commanderData,
     create: false,
+    diacritics: true,
     onItemAdd(value: string, _$item: any) {
       const char = getCharacterInformation(value);
       const newState = getState().selectedCharacters.concat([char]);
