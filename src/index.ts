@@ -47,13 +47,13 @@ function main() {
     return (state = { ...getState(), ...newState });
   }
 
-  function getCharacterInformation(name: string) {
-    return commanderData.find((commander: ICommander) => name === commander.name);
+  function getCharacterInformation(id: number) {
+    return commanderData.find((commander: ICommander) => id === commander.id);
   }
 
   function getTotalCost(commanders: ICommander[]) {
     const totalCost = commanders.reduce((accumulator, currentValue) => {
-      return accumulator + parseInt(currentValue.cost, 10);
+      return accumulator + currentValue.cost;
     }, 0);
     return totalCost;
   }
@@ -66,7 +66,7 @@ function main() {
             <strong>${char.name}</strong> | ${char.class} | ${char.cost} cost
           </div>
           <div style="font-size: 10px;">
-            ${char.special30} | ${char.special50} | ${char.special70} | ${char.special90}
+            ${char.skill1} | ${char.skill2} | ${char.skill3} | ${char.skill4}
           </div>
         </li>`;
       })
@@ -76,15 +76,28 @@ function main() {
   ($ as any)(".commander-input").selectize({
     maxItems: 5,
     hideSelected: true,
-    valueField: "name",
-    labelField: "name",
-    searchField: ["name"],
+    valueField: "id",
+    // labelField: "name",
+    render: {
+        item: function(char: ICommander, _: any) {
+          return "<div>" + char.name + "</div>";
+        },
+        option: function(char: ICommander, _: any) {
+          if (char.desc == null) {
+            return "<div>" + char.name + "</div>";
+          } else {
+            return "<div>" + char.name + " " + char.desc + "</div>";            
+          }
+        }
+    },
+    searchField: ["name", "desc", "aka"],
     maxOptions: 9999,
     options: commanderData,
     create: false,
     diacritics: true,
     onItemAdd(value: string, _$item: any) {
-      const char = getCharacterInformation(value);
+      const id = parseInt(value)
+      const char = getCharacterInformation(id);
       const newState = getState().selectedCharacters.concat([char]);
 
       setState({
@@ -95,10 +108,12 @@ function main() {
       render();
     },
     onItemRemove(value: string) {
-      const index = getState().selectedCharacters.findIndex(char => char.name === value);
+      const id = parseInt(value)
+      const state = getState()
+      const index = state.selectedCharacters.findIndex(char => char.id === id);
       if (index >= 0) {
-        const prevArr = getState().selectedCharacters.slice(0, index);
-        const nextArr = getState().selectedCharacters.slice(index + 1);
+        const prevArr = state.selectedCharacters.slice(0, index);
+        const nextArr = state.selectedCharacters.slice(index + 1);
         const newState = prevArr.concat(nextArr);
 
         setState({
@@ -116,9 +131,11 @@ function main() {
     listParentNode.innerHTML = mapResultNode();
 
     const totalCostNode = document.querySelector(".total-cost-wrapper");
+    const totalCostValue = getState().totalCost
+    const style = totalCostValue > 99 ? "list-group-item-danger" : "list-group-item-success"
     totalCostNode.innerHTML = `
-    <div class="list-group-item list-group-item-action active">
-    총 COST : ${getState().totalCost}
+    <div class="list-group-item list-group-item-action ${style}">
+    총 COST : ${totalCostValue}
   </div>
   `;
   }
