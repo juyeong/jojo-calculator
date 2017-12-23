@@ -1,25 +1,28 @@
-const commanderData = require("./data");
+const commanderData = require("./characters");
 
 interface ICommander {
+  id: number;
   name: string;
   class: string;
   grade: string;
   origin: string;
-  cost: string;
-  str: string;
-  int: string;
-  com: string;
-  dex: string;
-  luk: string;
-  special30: string;
-  special50: string;
-  special70: string;
-  special90: string;
+  cost: number;
+  str: number;
+  int: number;
+  com: number;
+  dex: number;
+  luk: number;
+  skill1: string;
+  skill2: string;
+  skill3: string;
+  skill4: string;
+  desc?: string;
+  aka?: string;
 }
 
 interface IAppState {
-  selectedCharacters?: ICommander[];
-  totalCost?: number;
+  selectedCharacters: ICommander[];
+  totalCost: number;
 }
 
 function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boolean) => void) {
