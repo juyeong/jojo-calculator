@@ -58,6 +58,14 @@ function main() {
     return totalCost;
   }
 
+  function getDisplayName(commander: ICommander) {
+    if (commander.desc == null) {
+      return commander.name
+    } else {
+      return `${commander.name} ${commander.desc}`
+    }
+  }
+
   function mapResultNode() {
     return getState()
       .selectedCharacters.map(char => {
@@ -80,14 +88,10 @@ function main() {
     // labelField: "name",
     render: {
         item: function(char: ICommander, _: any) {
-          return "<div>" + char.name + "</div>";
+          return `<div>${getDisplayName(char)}</div>`
         },
         option: function(char: ICommander, _: any) {
-          if (char.desc == null) {
-            return "<div>" + char.name + "</div>";
-          } else {
-            return "<div>" + char.name + " " + char.desc + "</div>";            
-          }
+          return `<div>${getDisplayName(char)}</div>`
         }
     },
     searchField: ["name", "desc", "aka"],
