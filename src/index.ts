@@ -136,6 +136,7 @@ function main() {
 
       setStateAndRender(newState);
       saveState();
+      ga('send', 'event', 'Character', 'Select', `${char.id}_${getDisplayName(char)}`);
     },
     onItemRemove(value: string) {
       const id = parseInt(value)
