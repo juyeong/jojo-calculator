@@ -97,7 +97,7 @@ function main() {
     searchField: ["name", "desc", "aka"],
     maxOptions: 9999,
     sortField: {
-      field: "score",
+      field: "order",
       direction: "desc"
     },
     options: commanderData,
