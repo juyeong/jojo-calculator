@@ -81,7 +81,33 @@ function main() {
       .join("");
   }
 
-  ($ as any)(".commander-input").selectize({
+  function setStateAndRender(newState: ICommander[]) {
+    setState({
+      selectedCharacters: newState,
+      totalCost: getTotalCost(newState),
+    });
+
+    render();
+  }
+
+  function saveState() {
+    if (window.localStorage) {
+      window.localStorage.setItem("ids", getState().selectedCharacters.map(commander => commander.id).join(","))
+    }
+  }
+
+  function loadState() {
+    if (window.localStorage) {
+      let ids = window.localStorage.getItem("ids");
+      if (ids != null) {
+        return ids.split(",").map(id => parseInt(id));
+      }
+    }
+    // default chars
+    return [464, 477, 256, 295, 121];
+  }
+
+  let select = ($ as any)(".commander-input").selectize({
     maxItems: 5,
     hideSelected: true,
     valueField: "id",
@@ -108,12 +134,8 @@ function main() {
       const char = getCharacterInformation(id);
       const newState = getState().selectedCharacters.concat([char]);
 
-      setState({
-        selectedCharacters: newState,
-        totalCost: getTotalCost(newState),
-      });
-
-      render();
+      setStateAndRender(newState);
+      saveState();
     },
     onItemRemove(value: string) {
       const id = parseInt(value)
@@ -124,12 +146,8 @@ function main() {
         const nextArr = state.selectedCharacters.slice(index + 1);
         const newState = prevArr.concat(nextArr);
 
-        setState({
-          selectedCharacters: newState,
-          totalCost: getTotalCost(newState),
-        });
-
-        render();
+        setStateAndRender(newState);
+        saveState();
       }
     },
   });
@@ -147,6 +165,13 @@ function main() {
   </div>
   `;
   }
+
+  function setDefaultItems() {
+    let selectize = select[0].selectize;
+    loadState().forEach(id => selectize.addItem(id));
+  }
+
+  setDefaultItems();
 }
 
 ready(main);
