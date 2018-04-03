@@ -1,3 +1,5 @@
+import "babel-polyfill";
+
 const commanderData = require("./characters");
 
 interface ICommander {
