@@ -46,7 +46,7 @@ function main() {
   }
 
   function setState(newState: IAppState): IAppState {
-    return (state = { ...getState(), ...newState });
+    return (state = {...getState(), ...newState});
   }
 
   function getCharacterInformation(id: number) {
@@ -54,10 +54,9 @@ function main() {
   }
 
   function getTotalCost(commanders: ICommander[]) {
-    const totalCost = commanders.reduce((accumulator, currentValue) => {
+    return commanders.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.cost;
     }, 0);
-    return totalCost;
   }
 
   function getDisplayName(commander: ICommander) {
@@ -115,12 +114,12 @@ function main() {
     valueField: "id",
     // labelField: "name",
     render: {
-        item: function(char: ICommander, _: any) {
-          return `<div>${getDisplayName(char)}</div>`
-        },
-        option: function(char: ICommander, _: any) {
-          return `<div>${getDisplayName(char)}</div>`
-        }
+      item: function (char: ICommander) {
+        return `<div>${getDisplayName(char)}</div>`
+      },
+      option: function (char: ICommander) {
+        return `<div>${getDisplayName(char)}</div>`
+      }
     },
     searchField: ["name", "desc", "aka"],
     maxOptions: 9999,
@@ -131,8 +130,8 @@ function main() {
     options: commanderData,
     create: false,
     diacritics: true,
-    onItemAdd(value: string, _$item: any) {
-      const id = parseInt(value)
+    onItemAdd(value: string) {
+      const id = parseInt(value);
       const char = getCharacterInformation(id);
       const newState = getState().selectedCharacters.concat([char]);
 
@@ -141,8 +140,8 @@ function main() {
       ga('send', 'event', 'Character', 'Select', `${char.id}_${getDisplayName(char)}`);
     },
     onItemRemove(value: string) {
-      const id = parseInt(value)
-      const state = getState()
+      const id = parseInt(value);
+      const state = getState();
       const index = state.selectedCharacters.findIndex(char => char.id === id);
       if (index >= 0) {
         const prevArr = state.selectedCharacters.slice(0, index);
@@ -160,8 +159,8 @@ function main() {
     listParentNode.innerHTML = mapResultNode();
 
     const totalCostNode = document.querySelector(".total-cost-wrapper");
-    const totalCostValue = getState().totalCost
-    const style = totalCostValue > 99 ? "list-group-item-danger" : "list-group-item-success"
+    const totalCostValue = getState().totalCost;
+    const style = totalCostValue > 99 ? "list-group-item-danger" : "list-group-item-success";
     totalCostNode.innerHTML = `
     <div class="list-group-item list-group-item-action ${style}">
     총 COST : ${totalCostValue}
@@ -170,8 +169,8 @@ function main() {
   }
 
   function setDefaultItems() {
-    let selectize = select[0].selectize;
-    loadState().forEach(id => selectize.addItem(id));
+    let s = select[0].selectize;
+    loadState().forEach(id => s.addItem(id));
   }
 
   setDefaultItems();

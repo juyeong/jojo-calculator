@@ -6,7 +6,7 @@ module.exports = {
   entry: ["babel-polyfill", "./src/index.ts"],
   // entry: "./src/index.ts",
   output: {
-    filename: "dst/bundle.js",
+    filename: "dst/bundle.js"
     // path: path.resolve(__dirname, "dst"),
   },
   devtool: "inline-source-map",
@@ -15,16 +15,16 @@ module.exports = {
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        loader: "ts-loader",
-      },
-    ],
+        loader: "ts-loader"
+      }
+    ]
   },
   devServer: {
     contentBase: path.join(__dirname, "src"),
     compress: true,
     host: "0.0.0.0",
     hot: true,
-    allowedHosts: ["localhost", "lvh.me"],
+    allowedHosts: ["localhost", "lvh.me"]
   },
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
@@ -33,7 +33,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/index.ejs",
       inject: false,
-      filename: "index.html",
-    }),
-  ],
+      filename: "index.html"
+    })
+  ]
 };
