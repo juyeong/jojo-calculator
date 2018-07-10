@@ -3,8 +3,9 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: ["babel-polyfill", "./src/index.ts"],
-  // entry: "./src/index.ts",
+  entry: {
+    cost: ["babel-polyfill", "./src/cost.ts"]
+  },
   output: {
     filename: "dst/bundle.js"
     // path: path.resolve(__dirname, "dst"),
@@ -31,9 +32,9 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: "src/index.ejs",
+      template: "src/cost.ejs",
       inject: false,
-      filename: "index.html"
+      filename: "cost/index.html"
     })
   ]
 };
