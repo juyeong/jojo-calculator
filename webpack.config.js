@@ -4,10 +4,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    cost: ["babel-polyfill", "./src/cost.ts"]
+    cost: ["babel-polyfill", "./src/cost.ts"],
+    geo: ["babel-polyfill", "./src/geo.ts"]
   },
   output: {
-    filename: "dst/bundle.js"
+    filename: "dst/[name]-bundle.js"
     // path: path.resolve(__dirname, "dst"),
   },
   devtool: "inline-source-map",
@@ -35,6 +36,11 @@ module.exports = {
       template: "src/cost.ejs",
       inject: false,
       filename: "cost/index.html"
+    }),
+    new HtmlWebpackPlugin({
+      template: "src/geo.ejs",
+      inject: false,
+      filename: "geo/index.html"
     })
   ]
 };
