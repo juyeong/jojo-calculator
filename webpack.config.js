@@ -4,12 +4,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
-    cost: ["babel-polyfill", "./src/cost.ts"],
-    geo: ["babel-polyfill", "./src/geo.ts"]
+    cost: ["babel-polyfill", path.join(__dirname, "/src/cost.ts")],
+    geo: ["babel-polyfill", path.join(__dirname, "/src/geo.ts")]
   },
   output: {
-    filename: "dst/[name]-bundle.js"
-    // path: path.resolve(__dirname, "dst"),
+    path: __dirname + "/dst",
+    filename: "[name]-bundle.js"
   },
   devtool: "inline-source-map",
   module: {
@@ -34,13 +34,15 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: "src/cost.ejs",
-      inject: false,
-      filename: "cost/index.html"
+      inject: true,
+      chunks: ['cost'],
+      filename: path.join(__dirname, "/cost/index.html")
     }),
     new HtmlWebpackPlugin({
       template: "src/geo.ejs",
-      inject: false,
-      filename: "geo/index.html"
+      inject: true,
+      chunks: ['geo'],
+      filename: path.join(__dirname, "/geo/index.html")
     })
   ]
 };
