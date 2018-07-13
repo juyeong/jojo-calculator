@@ -22,7 +22,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, "src"),
+    contentBase: __dirname,
     compress: true,
     host: "0.0.0.0",
     hot: true,
