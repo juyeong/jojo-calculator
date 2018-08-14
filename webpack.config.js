@@ -36,13 +36,13 @@ module.exports = {
       template: "src/cost.ejs",
       inject: true,
       chunks: ['cost'],
-      filename: path.join(__dirname, "cost/index.html")
+      filename: "cost/index.html"
     }),
     new HtmlWebpackPlugin({
       template: "src/geo.ejs",
       inject: true,
       chunks: ['geo'],
-      filename: path.join(__dirname, "geo/index.html")
+      filename: "geo/index.html"
     })
   ]
 };

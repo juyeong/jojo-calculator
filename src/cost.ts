@@ -2,6 +2,8 @@ import "babel-polyfill";
 
 const commanderData = require("./characters");
 
+const HAS_LOCAL_STORAGE = window.localStorage;
+
 interface ICommander {
   id: number;
   name: string;
@@ -49,32 +51,28 @@ function main() {
     return (state = {...getState(), ...newState});
   }
 
-  function getCharacterInformation(id: number) {
+  function getCharacterInformation(id: number): ICommander {
     return commanderData.find((commander: ICommander) => id === commander.id);
   }
 
-  function getTotalCost(commanders: ICommander[]) {
-    return commanders.reduce((accumulator, currentValue) => {
-      return accumulator + currentValue.cost;
+  function getTotalCost(commanders: ICommander[]): number {
+    return commanders.reduce((acc, val) => {
+      return acc + val.cost;
     }, 0);
   }
 
-  function getDisplayName(commander: ICommander) {
-    if (commander.desc == null) {
-      return commander.name
-    } else {
-      return `${commander.name} ${commander.desc}`
-    }
+  function getDisplayName(commander: ICommander): string {
+    return commander.desc == null ? commander.name : `${commander.name} ${commander.desc}`;
   }
 
-  function mapResultNode() {
+  function getActiveCharacterNodes() {
     return getState()
       .selectedCharacters.map(char => {
         return `<li class="list-group-item">
           <div style="margin-bottom: 2px;">
             <strong>${char.name}</strong> | ${char.class} | ${char.cost} cost
           </div>
-          <div style="font-size: 10px;">
+          <div class=".text-dark" style="font-size: 0.9em;">
             ${char.skill1} | ${char.skill2} | ${char.skill3} | ${char.skill4}
           </div>
         </li>`;
@@ -88,17 +86,17 @@ function main() {
       totalCost: getTotalCost(newState),
     });
 
-    render();
+    renderCharacters();
   }
 
   function saveState() {
-    if (window.localStorage) {
+    if (HAS_LOCAL_STORAGE) {
       window.localStorage.setItem("ids", getState().selectedCharacters.map(commander => commander.id).join(","))
     }
   }
 
   function loadState() {
-    if (window.localStorage) {
+    if (HAS_LOCAL_STORAGE) {
       let ids = window.localStorage.getItem("ids");
       if (ids != null) {
         return ids.split(",").map(id => parseInt(id));
@@ -106,6 +104,57 @@ function main() {
     }
     // default chars
     return [464, 477, 256, 295, 121];
+  }
+
+  function getNewSaveId(): number {
+    if (HAS_LOCAL_STORAGE) {
+      const id = window.localStorage.getItem("_id");
+      let idNum = 1;
+      if (id != null) {
+        idNum = parseInt(id, 10) + 1;
+      }
+      window.localStorage.setItem("_id", `${idNum}`);
+      return idNum;
+    }
+  }
+
+  function saveCharacters(id: number, characters: ICommander[]) {
+    const ids = characters.map((c) => c.id).join(',');
+    window.localStorage.setItem(`saved_${id}`, `${ids}`);
+  }
+
+  function getSavedCharacterKeys() {
+    const localStorage = window.localStorage;
+    const keys = [];
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i);
+      if (key.startsWith('saved_')) {
+        keys.push(key);
+      }
+    }
+    return keys;
+  }
+
+  function getSavedCharacter(key: string) {
+    const localStorage = window.localStorage;
+    return localStorage.getItem(key)
+      .split(',')
+      .map(id => parseInt(id, 10))
+      .map(id => getCharacterInformation(id));
+  }
+
+  function addSaveListener() {
+    document.querySelector('.commander-save').addEventListener('click', () => {
+      const savedKeys = getSavedCharacterKeys();
+      if (savedKeys.length >= 100) {
+        alert("최대 100개 까지 저장 가능");
+        return;
+      }
+      const saveId = getNewSaveId();
+      const characters = getState().selectedCharacters;
+      saveCharacters(saveId, characters);
+      renderSavedCharacters();
+    });
   }
 
   let select = ($ as any)(".commander-input").selectize({
@@ -154,9 +203,9 @@ function main() {
     },
   });
 
-  function render() {
-    const listParentNode = document.querySelector(".list-group");
-    listParentNode.innerHTML = mapResultNode();
+  function renderCharacters() {
+    const listParentNode = document.querySelector(".active-characters");
+    listParentNode.innerHTML = getActiveCharacterNodes();
 
     const totalCostNode = document.querySelector(".total-cost-wrapper");
     const totalCostValue = getState().totalCost;
@@ -168,12 +217,30 @@ function main() {
   `;
   }
 
+  function renderSavedCharacters() {
+    const listParentNode = document.querySelector(".saved-characters");
+    const savedKeys = getSavedCharacterKeys();
+    listParentNode.innerHTML =
+      savedKeys.map((key) => getSavedCharacter(key).map(character => character.name).join(", "))
+        .map(line => `
+<li class="list-group-item">${line}<div style="display: flex; justify-content: flex-end;">
+<button type="button" class="btn btn-link">수정</button>
+<button type="button" class="btn btn-link">공유</button>
+<button type="button" class="btn btn-link">삭제</button>
+</div>
+</li>`)
+        // .map(line => `<li class="list-group-item"><div>${line}</div></li>`)
+        .join('');
+  }
+
   function setDefaultItems() {
     let s = select[0].selectize;
     loadState().forEach(id => s.addItem(id));
   }
 
   setDefaultItems();
+  addSaveListener();
+  renderSavedCharacters();
 }
 
 ready(main);
