@@ -103,7 +103,7 @@ function main() {
       }
     }
     // default chars
-    return [464, 477, 256, 295, 121];
+    return [491, 492, 493, 494, 495];
   }
 
   function getNewSaveId(): number {
