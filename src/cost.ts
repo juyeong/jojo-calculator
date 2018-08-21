@@ -165,7 +165,7 @@ function main() {
   }
 
   let select = ($ as any)(".commander-input").selectize({
-    maxItems: 5,
+    maxItems: 7,
     hideSelected: true,
     valueField: "id",
     // labelField: "name",
@@ -216,7 +216,14 @@ function main() {
 
     const totalCostNode = document.querySelector(".total-cost-wrapper");
     const totalCostValue = getState().totalCost;
-    const style = totalCostValue > 99 ? "list-group-item-danger" : "list-group-item-success";
+    let style;
+    if (totalCostValue > 145) {
+      style = "list-group-item-danger";
+    } else if (totalCostValue > 99) {
+      style = "list-group-item-warning";
+    } else {
+      style = "list-group-item-success";
+    }
     totalCostNode.innerHTML = `
     <div class="list-group-item list-group-item-action ${style}">
     총 COST : ${totalCostValue}
