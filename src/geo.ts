@@ -18,7 +18,7 @@ import "babel-polyfill";
 //   습지: number;
 // }
 
-const ALL_COLUMNS = ["병종", "산지", "숲", "설원", "빙판", "평지", "초원", "황무지", "사막", "성내", "가옥", "완류", "습지"];
+const ALL_COLUMNS = ["병종", "산지", "숲", "설원", "빙판", "평지", "초원", "황무지", "사막", "성내", "가옥", "완류", "습지", "잔도", "난투장"];
 
 function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boolean) => void) {
   if ((document as any).attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {

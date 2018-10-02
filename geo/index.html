@@ -39,6 +39,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
     <!-- Google Analytics -->
+    <!--suppress CommaExpressionJS -->
     <script>
       (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
@@ -91,6 +92,7 @@
             </label>
         </div>
     </div>
+
     <!-- 격전지 -->
     <div id="geo-table-battlefield" class="table-responsive-lg text-center">
         <table class="table">
@@ -98,15 +100,16 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td colspan="2" class="table-active">중광</td>
+                <td colspan="3" class="table-active">중광</td>
                 <td colspan="3">남광</td>
                 <td colspan="3" class="table-active">북광</td>
                 <td colspan="2">서광</td>
                 <td colspan="3" class="table-active">동광</td>
             </tr>
             <tr>
-                <th scope="col" class="sort" data-sort="병종" data-order="desc">병종</th>
+                <th scope="col" class="sort" data-sort="병종" data-order="asc">병종</th>
                 <th scope="col" class="sort" data-sort="성내" data-order="desc">성내</th>
+                <th scope="col" class="sort table-active" data-sort="잔도" data-order="desc">잔도</th>
                 <th scope="col" class="sort table-active" data-sort="산지" data-order="desc">산지</th>
                 <th scope="col" class="sort table-active" data-sort="설원" data-order="desc">설원</th>
                 <th scope="col" class="sort" data-sort="황무지" data-order="desc">황무지</th>
@@ -126,6 +129,7 @@
             <tr>
                 <th scope="row" class="군주 병종">군주</th>
                 <td class="군주 성내 table-success">120</td>
+                <td class="군주 잔도">100</td>
                 <td class="군주 산지">80</td>
                 <td class="군주 설원">80</td>
                 <td class="군주 황무지">80</td>
@@ -143,6 +147,7 @@
             <tr>
                 <th scope="row" class="보병 병종">보병</th>
                 <td class="보병 성내">85</td>
+                <td class="보병 잔도 table-success">110</td>
                 <td class="보병 산지">85</td>
                 <td class="보병 설원 table-success">110</td>
                 <td class="보병 황무지">85</td>
@@ -160,6 +165,7 @@
             <tr>
                 <th scope="row" class="궁병 병종">궁병</th>
                 <td class="궁병 성내">85</td>
+                <td class="궁병 잔도 table-success">110</td>
                 <td class="궁병 산지">85</td>
                 <td class="궁병 설원">85</td>
                 <td class="궁병 황무지 table-success">110</td>
@@ -177,6 +183,7 @@
             <tr>
                 <th scope="row" class="노병 병종">노병</th>
                 <td class="노병 성내 table-success">115</td>
+                <td class="노병 잔도 table-success">110</td>
                 <td class="노병 산지 table-success">110</td>
                 <td class="노병 설원">85</td>
                 <td class="노병 황무지">85</td>
@@ -194,6 +201,7 @@
             <tr>
                 <th scope="row" class="창병 병종">창병</th>
                 <td class="창병 성내">85</td>
+                <td class="창병 잔도 table-success">110</td>
                 <td class="창병 산지 table-success">110</td>
                 <td class="창병 설원">85</td>
                 <td class="창병 황무지">85</td>
@@ -211,6 +219,7 @@
             <tr>
                 <th scope="row" class="경기병 병종">경기병</th>
                 <td class="경기병 성내 table-success">110</td>
+                <td class="경기병 잔도">100</td>
                 <td class="경기병 산지">80</td>
                 <td class="경기병 설원">85</td>
                 <td class="경기병 황무지">85</td>
@@ -228,6 +237,7 @@
             <tr>
                 <th scope="row" class="중기병 병종">중기병</th>
                 <td class="중기병 성내 table-success">115</td>
+                <td class="중기병 잔도">100</td>
                 <td class="중기병 산지">80</td>
                 <td class="중기병 설원 table-success">120</td>
                 <td class="중기병 황무지">80</td>
@@ -245,6 +255,7 @@
             <tr>
                 <th scope="row" class="산악기병 병종">산악기병</th>
                 <td class="산악기병 성내">80</td>
+                <td class="산악기병 잔도 table-success">110</td>
                 <td class="산악기병 산지 table-success">120</td>
                 <td class="산악기병 설원">85</td>
                 <td class="산악기병 황무지 table-success">120</td>
@@ -262,6 +273,7 @@
             <tr>
                 <th scope="row" class="궁기병 병종">궁기병</th>
                 <td class="궁기병 성내 table-success">105</td>
+                <td class="궁기병 잔도">100</td>
                 <td class="궁기병 산지">80</td>
                 <td class="궁기병 설원">80</td>
                 <td class="궁기병 황무지">80</td>
@@ -279,6 +291,7 @@
             <tr>
                 <th scope="row" class="포차 병종">포차</th>
                 <td class="포차 성내 table-success">100</td>
+                <td class="포차 잔도">90</td>
                 <td class="포차 산지">80</td>
                 <td class="포차 설원">80</td>
                 <td class="포차 황무지">80</td>
@@ -296,6 +309,7 @@
             <tr>
                 <th scope="row" class="무인 병종">무인</th>
                 <td class="무인 성내">85</td>
+                <td class="무인 잔도 table-success">110</td>
                 <td class="무인 산지">85</td>
                 <td class="무인 설원 table-success">125</td>
                 <td class="무인 황무지">85</td>
@@ -313,6 +327,7 @@
             <tr>
                 <th scope="row" class="적병 병종">적병</th>
                 <td class="적병 성내">85</td>
+                <td class="적병 잔도 table-success">120</td>
                 <td class="적병 산지 table-success">125</td>
                 <td class="적병 설원">80</td>
                 <td class="적병 황무지 table-success">115</td>
@@ -330,6 +345,7 @@
             <tr>
                 <th scope="row" class="책사 병종">책사</th>
                 <td class="책사 성내">85</td>
+                <td class="책사 잔도">100</td>
                 <td class="책사 산지 table-success">100</td>
                 <td class="책사 설원">80</td>
                 <td class="책사 황무지">80</td>
@@ -347,6 +363,7 @@
             <tr>
                 <th scope="row" class="풍수사 병종">풍수사</th>
                 <td class="풍수사 성내">85</td>
+                <td class="풍수사 잔도">100</td>
                 <td class="풍수사 산지">80</td>
                 <td class="풍수사 설원 table-success">110</td>
                 <td class="풍수사 황무지 table-success">110</td>
@@ -364,6 +381,7 @@
             <tr>
                 <th scope="row" class="도사 병종">도사</th>
                 <td class="도사 성내 table-success">110</td>
+                <td class="도사 잔도">100</td>
                 <td class="도사 산지 table-success">120</td>
                 <td class="도사 설원">80</td>
                 <td class="도사 황무지">85</td>
@@ -381,6 +399,7 @@
             <tr>
                 <th scope="row" class="무희 병종">무희</th>
                 <td class="무희 성내">85</td>
+                <td class="무희 잔도">100</td>
                 <td class="무희 산지">85</td>
                 <td class="무희 설원">85</td>
                 <td class="무희 황무지 table-success">110</td>
@@ -398,6 +417,7 @@
             <tr>
                 <th scope="row" class="전차 병종">전차</th>
                 <td class="전차 성내">80</td>
+                <td class="전차 잔도">100</td>
                 <td class="전차 산지">80</td>
                 <td class="전차 설원 table-success">120</td>
                 <td class="전차 황무지 table-success">120</td>
@@ -415,6 +435,7 @@
             <tr>
                 <th scope="row" class="수군 병종">수군</th>
                 <td class="수군 성내">80</td>
+                <td class="수군 잔도">100</td>
                 <td class="수군 산지">80</td>
                 <td class="수군 설원 table-success">125</td>
                 <td class="수군 황무지">80</td>
@@ -432,6 +453,7 @@
             <tr>
                 <th scope="row" class="웅술사 병종">웅술사</th>
                 <td class="웅술사 성내">85</td>
+                <td class="웅술사 잔도">100</td>
                 <td class="웅술사 산지 table-success">120</td>
                 <td class="웅술사 설원">85</td>
                 <td class="웅술사 황무지 table-success">125</td>
@@ -449,6 +471,7 @@
             <tr>
                 <th scope="row" class="호술사 병종">호술사</th>
                 <td class="호술사 성내">85</td>
+                <td class="호술사 잔도">100</td>
                 <td class="호술사 산지 table-success">130</td>
                 <td class="호술사 설원">85</td>
                 <td class="호술사 황무지">85</td>
@@ -466,6 +489,7 @@
             <tr>
                 <th scope="row" class="도독 병종">도독</th>
                 <td class="도독 성내">85</td>
+                <td class="도독 잔도">100</td>
                 <td class="도독 산지">80</td>
                 <td class="도독 설원 table-success">120</td>
                 <td class="도독 황무지">80</td>
@@ -483,6 +507,7 @@
             <tr>
                 <th scope="row" class="현자 병종">현자</th>
                 <td class="현자 성내 table-success">100</td>
+                <td class="현자 잔도">100</td>
                 <td class="현자 산지">80</td>
                 <td class="현자 설원 table-success">105</td>
                 <td class="현자 황무지">80</td>
@@ -500,6 +525,7 @@
             <tr>
                 <th scope="row" class="마왕 병종">마왕</th>
                 <td class="마왕 성내">85</td>
+                <td class="마왕 잔도">100</td>
                 <td class="마왕 산지">85</td>
                 <td class="마왕 설원">80</td>
                 <td class="마왕 황무지 table-success">100</td>
@@ -517,6 +543,7 @@
             <tr>
                 <th scope="row" class="검사 병종">검사</th>
                 <td class="검사 성내">85</td>
+                <td class="검사 잔도 table-success">110</td>
                 <td class="검사 산지">80</td>
                 <td class="검사 설원">85</td>
                 <td class="검사 황무지">85</td>
@@ -534,6 +561,7 @@
             <tr>
                 <th scope="row" class="군악대 병종">군악대</th>
                 <td class="군악대 성내 table-success">110</td>
+                <td class="군악대 잔도">100</td>
                 <td class="군악대 산지 table-success">100</td>
                 <td class="군악대 설원">85</td>
                 <td class="군악대 황무지">80</td>
@@ -551,6 +579,7 @@
             <tr>
                 <th scope="row" class="천자 병종">천자</th>
                 <td class="천자 성내">80</td>
+                <td class="천자 잔도">100</td>
                 <td class="천자 산지 table-success">110</td>
                 <td class="천자 설원">80</td>
                 <td class="천자 황무지">80</td>
@@ -568,6 +597,7 @@
             <tr>
                 <th scope="row" class="노전차 병종">노전차</th>
                 <td class="노전차 성내">80</td>
+                <td class="노전차 잔도">100</td>
                 <td class="노전차 산지">80</td>
                 <td class="노전차 설원 table-success">120</td>
                 <td class="노전차 황무지 table-success">120</td>
@@ -585,6 +615,7 @@
             <tr>
                 <th scope="row" class="효기병 병종">효기병</th>
                 <td class="효기병 성내">80</td>
+                <td class="효기병 잔도 table-success">110</td>
                 <td class="효기병 산지">80</td>
                 <td class="효기병 설원 table-success">120</td>
                 <td class="효기병 황무지 table-success">120</td>
@@ -602,6 +633,7 @@
             </tbody>
         </table>
     </div>
+
     <!-- 천리행 -->
     <div id="geo-table-challenge" class="table-responsive-lg text-center">
         <table class="table">
@@ -615,7 +647,7 @@
                 <td colspan="2" class="table-active">설원</td>
             </tr>
             <tr>
-                <th scope="col" class="sort" data-sort="병종" data-order="desc">병종</th>
+                <th scope="col" class="sort" data-sort="병종" data-order="asc">병종</th>
                 <th scope="col" class="sort table-active" data-sort="평지" data-order="desc">평지</th>
                 <th scope="col" class="sort" data-sort="황무지" data-order="desc">황무지</th>
                 <th scope="col" class="sort" data-sort="사막" data-order="desc">사막</th>
@@ -921,9 +953,10 @@
                 <td colspan="2">사막</td>
                 <td colspan="2" class="table-active">도성</td>
                 <td colspan="2">장강</td>
+                <td colspan="1" class="table-active">난투장</td>
             </tr>
             <tr>
-                <th scope="col" class="sort" data-sort="병종" data-order="desc">병종</th>
+                <th scope="col" class="sort" data-sort="병종" data-order="asc">병종</th>
                 <th scope="col" class="sort table-active" data-sort="산지" data-order="desc">산지</th>
                 <th scope="col" class="sort table-active" data-sort="숲" data-order="desc">숲</th>
                 <th scope="col" class="sort" data-sort="설원" data-order="desc">설원</th>
@@ -936,6 +969,7 @@
                 <th scope="col" class="sort table-active" data-sort="가옥" data-order="desc">가옥</th>
                 <th scope="col" class="sort" data-sort="완류" data-order="desc">완류</th>
                 <th scope="col" class="sort" data-sort="습지" data-order="desc">습지</th>
+                <th scope="col" class="sort table-active" data-sort="난투장" data-order="desc">난투장</th>
             </tr>
             </thead>
             <tbody class="list">
@@ -953,6 +987,7 @@
                 <td class="군주 가옥 table-success">115</td>
                 <td class="군주 완류">80</td>
                 <td class="군주 습지">80</td>
+                <td class="군주 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="보병 병종">보병</th>
@@ -968,6 +1003,7 @@
                 <td class="보병 가옥">80</td>
                 <td class="보병 완류 table-success">110</td>
                 <td class="보병 습지 table-success">110</td>
+                <td class="보병 난투장">110</td>
             </tr>
             <tr>
                 <th scope="row" class="궁병 병종">궁병</th>
@@ -983,6 +1019,7 @@
                 <td class="궁병 가옥">80</td>
                 <td class="궁병 완류 table-success">125</td>
                 <td class="궁병 습지 table-success">115</td>
+                <td class="궁병 난투장">125</td>
             </tr>
             <tr>
                 <th scope="row" class="노병 병종">노병</th>
@@ -998,6 +1035,7 @@
                 <td class="노병 가옥 table-success">115</td>
                 <td class="노병 완류">85</td>
                 <td class="노병 습지">85</td>
+                <td class="노병 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="창병 병종">창병</th>
@@ -1013,6 +1051,7 @@
                 <td class="창병 가옥">80</td>
                 <td class="창병 완류 table-success">110</td>
                 <td class="창병 습지 table-success">120</td>
+                <td class="창병 난투장">125</td>
             </tr>
             <tr>
                 <th scope="row" class="경기병 병종">경기병</th>
@@ -1028,6 +1067,7 @@
                 <td class="경기병 가옥 table-success">105</td>
                 <td class="경기병 완류">80</td>
                 <td class="경기병 습지">80</td>
+                <td class="경기병 난투장">115</td>
             </tr>
             <tr>
                 <th scope="row" class="중기병 병종">중기병</th>
@@ -1043,6 +1083,7 @@
                 <td class="중기병 가옥 table-success">110</td>
                 <td class="중기병 완류">80</td>
                 <td class="중기병 습지">80</td>
+                <td class="중기병 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="산악기병 병종">산악기병</th>
@@ -1058,6 +1099,7 @@
                 <td class="산악기병 가옥">80</td>
                 <td class="산악기병 완류">80</td>
                 <td class="산악기병 습지">80</td>
+                <td class="산악기병 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="궁기병 병종">궁기병</th>
@@ -1073,6 +1115,7 @@
                 <td class="궁기병 가옥 table-success">100</td>
                 <td class="궁기병 완류">80</td>
                 <td class="궁기병 습지">80</td>
+                <td class="궁기병 난투장">110</td>
             </tr>
             <tr>
                 <th scope="row" class="포차 병종">포차</th>
@@ -1088,6 +1131,7 @@
                 <td class="포차 가옥 table-success">100</td>
                 <td class="포차 완류">80</td>
                 <td class="포차 습지">80</td>
+                <td class="포차 난투장">100</td>
             </tr>
             <tr>
                 <th scope="row" class="무인 병종">무인</th>
@@ -1103,6 +1147,7 @@
                 <td class="무인 가옥">80</td>
                 <td class="무인 완류 table-success">115</td>
                 <td class="무인 습지 table-success">125</td>
+                <td class="무인 난투장">125</td>
             </tr>
             <tr>
                 <th scope="row" class="적병 병종">적병</th>
@@ -1118,6 +1163,7 @@
                 <td class="적병 가옥">80</td>
                 <td class="적병 완류">80</td>
                 <td class="적병 습지">80</td>
+                <td class="적병 난투장">125</td>
             </tr>
             <tr>
                 <th scope="row" class="책사 병종">책사</th>
@@ -1133,6 +1179,7 @@
                 <td class="책사 가옥">80</td>
                 <td class="책사 완류">80</td>
                 <td class="책사 습지">80</td>
+                <td class="책사 난투장">105</td>
             </tr>
             <tr>
                 <th scope="row" class="풍수사 병종">풍수사</th>
@@ -1148,6 +1195,7 @@
                 <td class="풍수사 가옥">80</td>
                 <td class="풍수사 완류 table-success">110</td>
                 <td class="풍수사 습지 table-success">100</td>
+                <td class="풍수사 난투장">110</td>
             </tr>
             <tr>
                 <th scope="row" class="도사 병종">도사</th>
@@ -1163,6 +1211,7 @@
                 <td class="도사 가옥 table-success">110</td>
                 <td class="도사 완류">85</td>
                 <td class="도사 습지">85</td>
+                <td class="도사 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="무희 병종">무희</th>
@@ -1178,6 +1227,7 @@
                 <td class="무희 가옥">80</td>
                 <td class="무희 완류 table-success">120</td>
                 <td class="무희 습지 table-success">110</td>
+                <td class="무희 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="전차 병종">전차</th>
@@ -1193,6 +1243,7 @@
                 <td class="전차 가옥">80</td>
                 <td class="전차 완류">80</td>
                 <td class="전차 습지">80</td>
+                <td class="전차 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="수군 병종">수군</th>
@@ -1208,6 +1259,7 @@
                 <td class="수군 가옥">80</td>
                 <td class="수군 완류 table-success">125</td>
                 <td class="수군 습지 table-success">115</td>
+                <td class="수군 난투장">125</td>
             </tr>
             <tr>
                 <th scope="row" class="웅술사 병종">웅술사</th>
@@ -1223,6 +1275,7 @@
                 <td class="웅술사 가옥">80</td>
                 <td class="웅술사 완류">85</td>
                 <td class="웅술사 습지">85</td>
+                <td class="웅술사 난투장">130</td>
             </tr>
             <tr>
                 <th scope="row" class="호술사 병종">호술사</th>
@@ -1238,6 +1291,7 @@
                 <td class="호술사 가옥">80</td>
                 <td class="호술사 완류">85</td>
                 <td class="호술사 습지">85</td>
+                <td class="호술사 난투장">130</td>
             </tr>
             <tr>
                 <th scope="row" class="도독 병종">도독</th>
@@ -1253,6 +1307,7 @@
                 <td class="도독 가옥">80</td>
                 <td class="도독 완류 table-success">125</td>
                 <td class="도독 습지 table-success">115</td>
+                <td class="도독 난투장">125</td>
             </tr>
             <tr>
                 <th scope="row" class="현자 병종">현자</th>
@@ -1268,6 +1323,7 @@
                 <td class="현자 가옥 table-success">105</td>
                 <td class="현자 완류">80</td>
                 <td class="현자 습지">80</td>
+                <td class="현자 난투장">105</td>
             </tr>
             <tr>
                 <th scope="row" class="마왕 병종">마왕</th>
@@ -1283,6 +1339,7 @@
                 <td class="마왕 가옥">80</td>
                 <td class="마왕 완류 table-success">100</td>
                 <td class="마왕 습지 table-success">105</td>
+                <td class="마왕 난투장">105</td>
             </tr>
             <tr>
                 <th scope="row" class="검사 병종">검사</th>
@@ -1298,6 +1355,7 @@
                 <td class="검사 가옥">80</td>
                 <td class="검사 완류 table-success">115</td>
                 <td class="검사 습지 table-success">120</td>
+                <td class="검사 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="군악대 병종">군악대</th>
@@ -1313,6 +1371,7 @@
                 <td class="군악대 가옥 table-success">100</td>
                 <td class="군악대 완류">85</td>
                 <td class="군악대 습지">85</td>
+                <td class="군악대 난투장">110</td>
             </tr>
             <tr>
                 <th scope="row" class="천자 병종">천자</th>
@@ -1328,6 +1387,7 @@
                 <td class="천자 가옥">80</td>
                 <td class="천자 완류">80</td>
                 <td class="천자 습지">80</td>
+                <td class="천자 난투장">116</td>
             </tr>
             <tr>
                 <th scope="row" class="노전차 병종">노전차</th>
@@ -1343,6 +1403,7 @@
                 <td class="노전차 가옥">80</td>
                 <td class="노전차 완류">80</td>
                 <td class="노전차 습지">80</td>
+                <td class="노전차 난투장">120</td>
             </tr>
             <tr>
                 <th scope="row" class="효기병 병종">효기병</th>
@@ -1358,6 +1419,7 @@
                 <td class="효기병 가옥">80</td>
                 <td class="효기병 완류">80</td>
                 <td class="효기병 습지">80</td>
+                <td class="효기병 난투장">120</td>
             </tr>
             </tbody>
         </table>
