@@ -5,15 +5,17 @@
     "allowUnusedLabels": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "module": "commonjs",
     "target": "es5",
     "lib": [
       "es6",
-      "dom"
-    ],
-    "removeComments": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
+      "dom",
+      "dom.iterable"
+    ]
   },
   "include": [
     "src/**/*"
