@@ -9,7 +9,7 @@ module.exports = {
   },
   output: {
     path: __dirname + "/dst",
-    filename: "[name]-bundle.js"
+    filename: "[name]-[hash]-bundle.js"
   },
   devtool: "inline-source-map",
   module: {
