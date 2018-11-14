@@ -19,7 +19,8 @@ const COMPETITIVE: IField[] = [
   {type: "설원 (병주)", fields: ["설원", "빙판"]},
   {type: "초원 (기주)", fields: ["평지", "초원"]},
   {type: "사막 (옹주)", fields: ["황무지", "사막"]},
-  {type: "장강 (양주)", fields: ["성내", "가옥"]},
+  {type: "도성 (사주)", fields: ["성내", "가옥"]},
+  {type: "장강 (양주)", fields: ["완류", "습지"]},
   {type: "난투장", fields: ["난투장"]},
 ];
 const CHALLENGE: IField[] = [
