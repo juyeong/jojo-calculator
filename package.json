@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -r dst && webpack -p",
+    "build": "rm -rf dst && webpack -p",
     "start": "webpack-dev-server"
   },
   "repository": {
