@@ -1,3 +1,5 @@
+import {disableContextMenu} from "./util";
+
 function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boolean) => void) {
   if ((document as any).attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     fn();
@@ -6,7 +8,7 @@ function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boole
   }
 }
 
-function main() {
+function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('./dst/service-worker.js')
@@ -20,12 +22,11 @@ function main() {
   } else {
     console.log('serviceWorker not found in navigator');
   }
+}
 
-  window.oncontextmenu = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    return false;
-  };
+function main() {
+  registerServiceWorker();
+  disableContextMenu();
 }
 
 ready(main);
