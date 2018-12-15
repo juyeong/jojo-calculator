@@ -43,6 +43,12 @@ module.exports = {
       inject: true,
       chunks: ['geo'],
       filename: path.join(__dirname, "geo/index.html")
+    }),
+    new HtmlWebpackPlugin({
+      template: "src/index.ejs",
+      inject: true,
+      chunks: ['index'],
+      filename: path.join(__dirname, "index.html")
     })
   ]
 };
