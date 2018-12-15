@@ -150,6 +150,16 @@ function main() {
       .map(id => getCharacterInformation(id));
   }
 
+  function addNavListener() {
+    document.querySelectorAll(".nav-link")
+      .forEach((nav) => {
+        nav.addEventListener("click", () => {
+          const item = nav.getAttribute("data-item");
+          ga('send', 'event', 'Nav', 'Click', item);
+        });
+      });
+  }
+
   function addSaveListener() {
     document.querySelector('.commander-save').addEventListener('click', () => {
       const savedKeys = getSavedCharacterKeys();
@@ -263,6 +273,7 @@ function main() {
 
   setDefaultItems();
   addSaveListener();
+  addNavListener();
   renderSavedCharacters();
 }
 

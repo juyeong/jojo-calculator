@@ -123,11 +123,22 @@ function main() {
   updateTable("#geo-table-challenge", CHALLENGE);
   onClick("battlefield");
   addListeners();
+  addNavListener();
 }
 
 function getStat(unitType: string, field: string): number {
   const row = geoData.find((row) => row["병종"] === unitType);
   return get(row, field);
+}
+
+function addNavListener() {
+  document.querySelectorAll(".nav-link")
+    .forEach((nav) => {
+      nav.addEventListener("click", () => {
+        const item = nav.getAttribute("data-item");
+        ga('send', 'event', 'Nav', 'Click', item);
+      });
+    });
 }
 
 function addListeners() {
