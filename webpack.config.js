@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -11,7 +11,8 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dst'),
-    filename: "[name]-[hash]-bundle.js"
+    filename: "[name]-[hash]-bundle.js",
+    publicPath: "https://jojo.jy.is/dst/"
   },
   devtool: "inline-source-map",
   module: {
@@ -54,8 +55,9 @@ module.exports = {
     }),
     new SWPrecacheWebpackPlugin({
       minify: true,
-      cacheId: 'jojo.jy.is',
-      filename: 'service-worker.js',
+      cacheId: "jojo.jy.is",
+      filename: "service-worker.js",
+      filepath: path.join(__dirname, "service-worker.js"),
       staticFileGlobsIgnorePatterns: [/.*\.html$/]
     })
   ]

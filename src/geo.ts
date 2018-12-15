@@ -2,7 +2,7 @@ import "babel-polyfill";
 
 import * as geoData from "./geo_data.json";
 import get = Reflect.get;
-import {disableContextMenu} from "./util";
+import {disableContextMenu, registerServiceWorker} from "./util";
 
 const ALL_COLUMNS: string[] = Object.keys(geoData[0]);
 const UNIT_TYPES: string[] = geoData.map((row) => row["병종"]);
@@ -126,6 +126,7 @@ function main() {
   addListeners();
   addNavListener();
   disableContextMenu();
+  registerServiceWorker();
 }
 
 function getStat(unitType: string, field: string): number {

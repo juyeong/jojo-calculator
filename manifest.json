@@ -1,7 +1,7 @@
 {
   "name": "탕수육",
   "short_name": "탕수육",
-  "start_url": "/index.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#fff",
   "description": "삼국지 조조전 온라인",

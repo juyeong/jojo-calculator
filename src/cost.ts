@@ -1,5 +1,5 @@
 import "babel-polyfill";
-import {disableContextMenu} from "./util";
+import {disableContextMenu, registerServiceWorker} from "./util";
 
 const commanderData = require("./characters");
 
@@ -277,6 +277,7 @@ function main() {
   addNavListener();
   renderSavedCharacters();
   disableContextMenu();
+  registerServiceWorker();
 }
 
 ready(main);
