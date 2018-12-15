@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dst && webpack -p",
-    "start": "webpack-dev-server"
+    "build": "rm -rf dst && webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,8 @@
     "typescript": "^3.0.3",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.5"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
