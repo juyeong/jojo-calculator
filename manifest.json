@@ -3,7 +3,8 @@
   "short_name": "탕수육",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fff",
+  "background_color": "#FFFFFF",
+  "theme_color": "#9E9E9E",
   "description": "삼국지 조조전 온라인",
   "icons": [
     {

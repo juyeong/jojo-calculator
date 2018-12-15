@@ -52,9 +52,8 @@ module.exports = {
       minify: true,
       cacheId: "jojo.jy.is",
       filename: "service-worker.js",
-      filepath: path.join(__dirname, "service-worker.js"),
+      mergeStaticsConfig: true,
       staticFileGlobs: ["images/*"],
-      staticFileGlobsIgnorePatterns: [/.*\.html$/]
     })
   ]
 };
