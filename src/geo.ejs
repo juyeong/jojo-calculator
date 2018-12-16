@@ -65,13 +65,27 @@
         font-size: 0.7rem;
       }
     }
+
+    .navbar-img {
+      width: 30px;
+      background-image: url('../images/apple-icon.png');
+      background-size: 30px 30px;
+      height: 30px;
+    }
+
+    .navbar-img-text {
+      width: 1px;
+      overflow: hidden;
+      height: 1px;
+      position: absolute;
+    }
   </style>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <a class="navbar-brand" href="/">
-    <img src="/images/apple-icon.png" width="30" height="30" alt="">
+  <a class="navbar-brand navbar-img" href="/">
+    <span class="navbar-img-text">탕수육</span>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
