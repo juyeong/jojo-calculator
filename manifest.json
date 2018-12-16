@@ -1,7 +1,7 @@
 {
   "name": "탕수육",
   "short_name": "탕수육",
-  "start_url": ".",
+  "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#9E9E9E",
