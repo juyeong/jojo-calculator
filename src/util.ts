@@ -33,7 +33,35 @@ export function registerServiceWorker() {
         console.error(e);
       }
     });
+    if (isIos() && !isInStandaloneMode()) {
+      let localStorage = window.localStorage;
+      if (localStorage) {
+        let now = Date.now();
+        const lastShowString = localStorage.getItem("ios-pwa-popup");
+        if (lastShowString) {
+          const nextShow = Number.parseInt(lastShowString, 10);
+          if (nextShow < now) {
+            // 1 week
+            localStorage.setItem("ios-pwa-popup", (now + 604800000).toString());
+            alert("하단 공유 버튼을 누르면📱\n'홈 화면에 추가'할 수 있습니다!");
+          }
+        } else {
+          // 1 hour
+          localStorage.setItem("ios-pwa-popup", (now + 3600000).toString());
+        }
+      }
+    }
   } else {
     console.log('serviceWorker not found in navigator');
   }
+}
+
+function isIos() {
+  const userAgent = window.navigator.userAgent;
+  return /iphone|ipad|ipod/i.test(userAgent);
+}
+
+function isInStandaloneMode() {
+  const navigator: any = window.navigator;
+  return ('standalone' in navigator) && (navigator.standalone);
 }

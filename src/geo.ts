@@ -162,7 +162,7 @@ function onClick(buttonId: string) {
   let allDivs = [battlefieldDiv, competitiveDiv, challengeDiv];
   const List = (window as any).List;
   if (!List) {
-    window.console && console.log("List not fount");
+    console.log("List not fount");
     setTimeout(() => onClick(buttonId), 100);
   } else if (buttonId === 'battlefield') {
     allDivs.forEach((div) => div.classList.add("d-none"));
@@ -178,7 +178,7 @@ function onClick(buttonId: string) {
     new List(`geo-table-${buttonId}`, {valueNames: ALL_COLUMNS});
   } catch (e) {
     if (!isConstructor(List)) {
-      window.console && console.log("List is not constructor");
+      console.log("List is not constructor");
       setTimeout(() => onClick(buttonId), 100);
     } else {
       console.error(`onClick(${buttonId})`, e);
