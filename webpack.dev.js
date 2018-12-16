@@ -11,5 +11,12 @@ module.exports = merge(common, {
     hot: true,
     allowedHosts: ["localhost", "lvh.me"]
   },
-  plugins: []
+  optimization: {
+    occurrenceOrder: false,
+    minimize: false,
+  },
+  plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ]
 });
