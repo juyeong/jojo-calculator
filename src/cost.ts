@@ -44,6 +44,8 @@ function main() {
     totalCost: 0,
   };
 
+  let inDefaultUpdate = false;
+
   function getState(): IAppState {
     return state;
   }
@@ -203,8 +205,10 @@ function main() {
       const newState = getState().selectedCharacters.concat([char]);
 
       setStateAndRender(newState);
-      saveState();
-      ga('send', 'event', 'Character', 'Select', `${char.id}_${getDisplayName(char)}`);
+      if (!inDefaultUpdate) {
+        saveState();
+        ga('send', 'event', 'Character', 'Select', `${char.id}_${getDisplayName(char)}`);
+      }
     },
     onItemRemove(value: string) {
       const id = parseInt(value);
@@ -222,6 +226,7 @@ function main() {
   });
 
   function renderCharacters() {
+    if (inDefaultUpdate) return;
     const listParentNode = document.querySelector(".active-characters");
     listParentNode.innerHTML = getActiveCharacterNodes();
 
@@ -246,11 +251,15 @@ function main() {
     const listParentNode = document.querySelector(".saved-characters");
     const savedKeys = getSavedCharacterKeys();
     listParentNode.innerHTML =
-      savedKeys.map((key) => [key, getSavedCharacter(key).map(character => character.name).join(", ")])
+      savedKeys.map((key) => {
+        let characters = getSavedCharacter(key);
+        return [key, characters.map(character => character.name).join(", "), characters.map(character => character.cost).reduce((acc, val) => val + acc, 0)];
+      })
         .map((arr) => {
           const key = arr[0];
           const line = arr[1];
-          return `<li class="list-group-item" style="padding-bottom: 0;">${line}<div style="display: flex; justify-content: flex-end">
+          const cost = arr[2];
+          return `<li class="list-group-item" style="padding-bottom: 0;">[${cost}] ${line}<div style="display: flex; justify-content: flex-end">
 <!--<button type="button" class="btn btn-link">공유</button>-->
 <button type="button" class="saved-delete btn btn-link" data-key="${key}">삭제</button>
 </div>
@@ -268,14 +277,16 @@ function main() {
   }
 
   function setDefaultItems() {
-    let s = select[0].selectize;
-    loadState().forEach(id => s.addItem(id));
+    inDefaultUpdate = true;
+    select[0].selectize.setValue(loadState());
+    inDefaultUpdate = false;
+    renderCharacters();
   }
 
-  setDefaultItems();
+  window.setTimeout(() => setDefaultItems(), 0);
   addSaveListener();
   addNavListener();
-  renderSavedCharacters();
+  window.setTimeout(() => renderSavedCharacters(), 0);
   disableContextMenu();
   registerServiceWorker();
 }
