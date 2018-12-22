@@ -1,8 +1,10 @@
 import "babel-polyfill";
+require("html-loader!./index.ejs");
+require("./geo.css");
 
 import * as geoData from "./geo_data.json";
 import get = Reflect.get;
-import {disableContextMenu, registerServiceWorker} from "./util";
+import {disableContextMenu, registerServiceWorker} from "../util";
 
 const ALL_COLUMNS: string[] = Object.keys(geoData[0]);
 const UNIT_TYPES: string[] = geoData.map((row) => row["병종"]);
@@ -16,13 +18,13 @@ const BATTLEFIELD: IField[] = [
 ];
 const COMPETITIVE: IField[] = [
   {type: "", fields: ["병종"]},
+  {type: "난투장", fields: ["난투장"]},
   {type: "산지 (익주)", fields: ["산지", "숲"]},
   {type: "설원 (병주)", fields: ["설원", "빙판"]},
   {type: "초원 (기주)", fields: ["평지", "초원"]},
   {type: "사막 (옹주)", fields: ["황무지", "사막"]},
   {type: "도성 (사주)", fields: ["성내", "가옥"]},
   {type: "장강 (양주)", fields: ["완류", "습지"]},
-  {type: "난투장", fields: ["난투장"]},
 ];
 const CHALLENGE: IField[] = [
   {type: "", fields: ["병종"]},
@@ -194,4 +196,5 @@ function isConstructor(o: any) {
     return false;
   }
 }
+
 ready(main);

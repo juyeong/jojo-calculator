@@ -14,21 +14,21 @@
   <meta property="og:image:width" content="690">
   <meta property="og:image:height" content="360">
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/images/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="<%= require("../images/apple-icon-57x57.png") %>">
+  <link rel="apple-touch-icon" sizes="60x60" href="<%= require("../images/apple-icon-60x60.png") %>">
+  <link rel="apple-touch-icon" sizes="72x72" href="<%= require("../images/apple-icon-72x72.png") %>">
+  <link rel="apple-touch-icon" sizes="76x76" href="<%= require("../images/apple-icon-76x76.png") %>">
+  <link rel="apple-touch-icon" sizes="114x114" href="<%= require("../images/apple-icon-114x114.png") %>">
+  <link rel="apple-touch-icon" sizes="120x120" href="<%= require("../images/apple-icon-120x120.png") %>">
+  <link rel="apple-touch-icon" sizes="144x144" href="<%= require("../images/apple-icon-144x144.png") %>">
+  <link rel="apple-touch-icon" sizes="152x152" href="<%= require("../images/apple-icon-152x152.png") %>">
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= require("../images/apple-icon-180x180.png") %>">
+  <link rel="icon" type="image/png" sizes="192x192" href="<%= require("../images/android-icon-192x192.png") %>">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= require("../images/favicon-32x32.png") %>">
+  <link rel="icon" type="image/png" sizes="96x96" href="<%= require("../images/favicon-96x96.png") %>">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= require("../images/favicon-16x16.png") %>">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/images/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="<%= require("../images/ms-icon-144x144.png") %>">
   <meta name="theme-color" content="#ffffff">
 
   <script
@@ -68,32 +68,7 @@
   </script>
 
   <style>
-    .selectize-dropdown-content > div {
-      padding: 6px;
-    }
 
-    .selectize-input {
-      border: 0;
-      overflow: unset;
-    }
-
-    .selectize-input.focus {
-      box-shadow: none;
-    }
-
-    .navbar-img {
-      width: 30px;
-      background-image: url('../images/apple-icon.png');
-      background-size: 30px 30px;
-      height: 30px;
-    }
-
-    .navbar-img-text {
-      width: 1px;
-      overflow: hidden;
-      height: 1px;
-      position: absolute;
-    }
   </style>
   <!-- End Google Analytics -->
 </head>
@@ -149,6 +124,6 @@
 
   <ul class="saved-characters list-group"></ul>
 </div>
-<script type="text/javascript" src="../dst/cost-0736199f178d1df17919-bundle.js"></script></body>
+</body>
 
 </html>

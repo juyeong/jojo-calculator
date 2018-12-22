@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf dst && webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
@@ -21,10 +21,19 @@
     "@types/google.analytics": "0.0.36",
     "@types/jquery": "^3.3.22",
     "@types/node": "^8.10.37",
+    "clean-webpack-plugin": "^1.0.0",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.0.2",
+    "file-loader": "^3.0.1",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "robotstxt-webpack-plugin": "^4.0.1",
+    "sitemap-webpack-plugin": "^0.6.0",
+    "style-loader": "^0.23.1",
     "sw-precache-webpack-plugin": "^0.11.5",
     "ts-loader": "^4.5.0",
     "typescript": "^3.0.3",
+    "url-loader": "^1.1.2",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",

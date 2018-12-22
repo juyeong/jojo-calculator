@@ -1,5 +1,8 @@
 import "babel-polyfill";
-import {disableContextMenu, registerServiceWorker} from "./util";
+// import "./index.css";
+require("./index.css");
+
+import {disableContextMenu, registerServiceWorker} from "../util";
 
 const commanderData = require("./characters");
 

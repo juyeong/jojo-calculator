@@ -1,0 +1,26 @@
+.selectize-dropdown-content > div {
+    padding: 6px;
+}
+
+.selectize-input {
+    border: 0;
+    overflow: unset;
+}
+
+.selectize-input.focus {
+    box-shadow: none;
+}
+
+.navbar-img {
+    width: 30px;
+    background-image: url('../images/apple-icon.png');
+    background-size: 30px 30px;
+    height: 30px;
+}
+
+.navbar-img-text {
+    width: 1px;
+    overflow: hidden;
+    height: 1px;
+    position: absolute;
+}
