@@ -4,7 +4,6 @@ const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const RobotsTxtPlugin = require("robotstxt-webpack-plugin").default;
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpackMajorVersion = require('webpack/package.json').version.split('.')[0];
 
 const HOSTNAME = "https://jojo.jy.is";
 
@@ -74,7 +73,11 @@ module.exports = {
       cacheId: "jojo.jy.is",
       filename: "service-worker.js",
       mergeStaticsConfig: true,
-      staticFileGlobs: ["images/*"],
+      staticFileGlobsIgnorePatterns: [
+        /CNAME$/,
+        /sitemap\.xml(\.gz)?$/,
+        /robots\.txt$/
+      ],
     }),
     new RobotsTxtPlugin({
       policy: [{
