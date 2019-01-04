@@ -50,12 +50,12 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-112737939-2', 'auto');
-    const userAgent = navigator.userAgent;
-    if (!userAgent) {
+    var ua = navigator.userAgent;
+    if (!ua) {
       ga('set', 'cd1', 'unknown');
-    } else if (userAgent.indexOf("KAKAOTALK") >= 0) {
+    } else if (ua.indexOf("KAKAOTALK") >= 0) {
       ga('set', 'cd1', 'kakaotalk');
-    } else if (userAgent.indexOf("NAVER") >= 0 && userAgent.indexOf("cafe;") >= userAgent.indexOf("NAVER")) {
+    } else if (ua.indexOf("NAVER") >= 0 && ua.indexOf("cafe;") >= ua.indexOf("NAVER")) {
       ga('set', 'cd1', 'navercafe');
     } else {
       ga('set', 'cd1', 'other');
@@ -87,5 +87,5 @@
     </div>
   </main>
 </div>
-<script type="text/javascript" src="/js/0654cf273f8af1dca2ab.js"></script></body>
+<script type="text/javascript" src="/js/b4e1969d9cb00969498a.js"></script></body>
 </html>
