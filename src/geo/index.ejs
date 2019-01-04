@@ -52,13 +52,13 @@
     ga('create', 'UA-112737939-2', 'auto');
     var ua = navigator.userAgent;
     if (!ua) {
-      ga('set', 'cd1', 'unknown');
+      ga('set', 'dimension1', 'unknown');
     } else if (ua.indexOf("KAKAOTALK") >= 0) {
-      ga('set', 'cd1', 'kakaotalk');
+      ga('set', 'dimension1', 'kakaotalk');
     } else if (ua.indexOf("NAVER") >= 0 && ua.indexOf("cafe;") >= ua.indexOf("NAVER")) {
-      ga('set', 'cd1', 'navercafe');
+      ga('set', 'dimension1', 'navercafe');
     } else {
-      ga('set', 'cd1', 'other');
+      ga('set', 'dimension1', 'other');
     }
     ga('send', 'pageview');
   </script>
