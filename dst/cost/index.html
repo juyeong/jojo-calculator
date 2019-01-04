@@ -10,7 +10,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="코스트 계산기 - 삼국지 조조전 온라인">
   <meta property="og:url" content="https://jojo.jy.is/cost/">
-  <meta property="og:image" content="https://jojo.jy.is/images/og.jpg">
+  <meta property="og:image" content="https://jojo.jy.is/images/bb8806895ed04c4f879ca137238d2d35.jpg">
   <meta property="og:image:width" content="690">
   <meta property="og:image:height" content="360">
   <link rel="manifest" href="/manifest.json">
@@ -64,6 +64,16 @@
     })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-112737939-2', 'auto');
+    const userAgent = navigator.userAgent;
+    if (!userAgent) {
+      ga('set', 'cd1', 'unknown');
+    } else if (userAgent.indexOf("KAKAOTALK") >= 0) {
+      ga('set', 'cd1', 'kakaotalk');
+    } else if (userAgent.indexOf("NAVER") >= 0 && userAgent.indexOf("cafe;") >= userAgent.indexOf("NAVER")) {
+      ga('set', 'cd1', 'navercafe');
+    } else {
+      ga('set', 'cd1', 'other');
+    }
     ga('send', 'pageview');
   </script>
 
