@@ -12,7 +12,8 @@ module.exports = {
   entry: {
     index: ["babel-polyfill", path.join(__dirname, "/src/main/index.ts")],
     cost: ["babel-polyfill", path.join(__dirname, "/src/cost/index.ts")],
-    geo: ["babel-polyfill", path.join(__dirname, "/src/geo/index.ts")]
+    geo: ["babel-polyfill", path.join(__dirname, "/src/geo/index.ts")],
+    mongme: ["babel-polyfill", path.join(__dirname, "/src/mongme/index.ts")]
   },
   output: {
     path: path.join(__dirname, "dst"),
@@ -51,6 +52,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin("dst"),
     new HtmlWebpackPlugin({
+      filename: "mongme/index.html",
+      template: "src/mongme/index.ejs",
+      inject: true,
+      chunks: ["mongme"],
+    }),
+    new HtmlWebpackPlugin({
       filename: "cost/index.html",
       template: "src/cost/index.ejs",
       inject: true,
@@ -86,7 +93,7 @@ module.exports = {
       }],
       host: HOSTNAME
     }),
-    new SitemapPlugin(HOSTNAME, ["/", "/cost/", "/geo/"], {
+    new SitemapPlugin(HOSTNAME, ["/", "/cost/", "/geo/", "/mongme/"], {
       lastMod: true,
       changeFreq: "monthly",
       priority: "0.8"
