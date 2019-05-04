@@ -31,15 +31,18 @@ function main() {
   GUIDE_LIST.forEach((guide) => {
     if (guide) {
       const link = document.createElement("a");
-      const favicon = document.createElement("img");
       link.href = guide.link;
       link.target = "_href";
       link.className = "list-group-item list-group-item-action";
+      const favicon = document.createElement("img");
       favicon.src = guide.source === "cafe" ? "https://cafe.naver.com/favicon.ico" : "https://gall.dcinside.com/favicon.ico";
-      favicon.className = "favicon";
+      favicon.className = "guide-favicon";
+      const text = document.createElement("span");
+      text.innerText = guide.title;
+      text.className = "guide-title";
       // const title = `${guide.title}${guide.author ? " by " + guide.author : ""}`;
       link.appendChild(favicon);
-      link.appendChild(document.createTextNode(guide.title));
+      link.appendChild(text);
       list.appendChild(link);
     } else {
       let li = document.createElement("li");

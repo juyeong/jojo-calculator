@@ -4,8 +4,15 @@
     align-items: center;
 }
 
-.mongme-list > .list-group-item > .favicon {
+.mongme-list > .list-group-item > .guide-favicon {
     margin-right: 4px;
     width: 16px;
     height: 16px;
+}
+
+.mongme-list > .list-group-item > .guide-title {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
