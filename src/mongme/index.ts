@@ -27,7 +27,6 @@ const GUIDE_LIST: IGuideLink[] = [
 function main() {
   registerServiceWorker();
   disableContextMenu();
-  if (Math.random() >= 1) return;
   const list = document.querySelector(".mongme-list");
   GUIDE_LIST.forEach((guide) => {
     if (guide) {
