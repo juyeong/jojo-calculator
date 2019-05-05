@@ -35,7 +35,13 @@ function main() {
       link.target = "_href";
       link.className = "list-group-item list-group-item-action";
       const favicon = document.createElement("img");
-      favicon.src = guide.source === "cafe" ? "https://cafe.naver.com/favicon.ico" : "https://gall.dcinside.com/favicon.ico";
+      if (guide.source ===  "cafe") {
+        favicon.src = "https://cafe.naver.com/favicon.ico";
+        favicon.alt = "공카";
+      } else if (guide.source === "dc") {
+        favicon.src = "https://gall.dcinside.com/favicon.ico";
+        favicon.alt = "조갤";
+      }
       favicon.className = "guide-favicon";
       const text = document.createElement("span");
       text.innerText = guide.title;
