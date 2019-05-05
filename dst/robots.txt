@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+Sitemap: https://jojo.jy.is/sitemap.xml
 Host: https://jojo.jy.is

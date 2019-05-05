@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
-const RobotsTxtPlugin = require("robotstxt-webpack-plugin").default;
+const RobotsTxtPlugin = require("robotstxt-webpack-plugin");
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
@@ -50,7 +50,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin("dst"),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: "mongme/index.html",
       template: "src/mongme/index.ejs",
@@ -91,6 +91,7 @@ module.exports = {
         userAgent: "*",
         allow: "/"
       }],
+      sitemap: `${HOSTNAME}/sitemap.xml`,
       host: HOSTNAME
     }),
     new SitemapPlugin(HOSTNAME, ["/", "/cost/", "/geo/", "/mongme/"], {
