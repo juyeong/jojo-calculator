@@ -1,7 +1,7 @@
 import {disableContextMenu, registerServiceWorker} from "../util";
 
 require("./mongme.css");
-require("html-loader!./index.ejs");
+const fg = require("fg-loadcss");
 
 function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boolean) => void) {
   if ((document as any).attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -24,9 +24,22 @@ const GUIDE_LIST: IGuideLink[] = [
   {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624243", title: "무과금 슬로우 유저의 몽매의 시련 - 광기에 사로잡힌 동탁 편", author: "아이누족"},
 ];
 
+function loadCSS() {
+  fg.loadCSS(
+    "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css",
+    null,
+    null,
+    {
+      "crossorigin": "anonymous",
+      "integrity": "sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="
+    }
+  );
+}
+
 function main() {
   registerServiceWorker();
   disableContextMenu();
+  loadCSS();
   const list = document.querySelector(".mongme-list");
   GUIDE_LIST.forEach((guide) => {
     if (guide) {
@@ -35,7 +48,7 @@ function main() {
       link.target = "_href";
       link.className = "list-group-item list-group-item-action";
       const favicon = document.createElement("img");
-      if (guide.source ===  "cafe") {
+      if (guide.source === "cafe") {
         favicon.src = "https://cafe.naver.com/favicon.ico";
         favicon.alt = "공카";
       } else if (guide.source === "dc") {
