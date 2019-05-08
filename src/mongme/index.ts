@@ -22,6 +22,7 @@ const GUIDE_LIST: IGuideLink[] = [
   {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624456", title: "[몽매-동탁] 조조, 아린, 지원궁기 활용하여 44.5만딜", author: "찰진엉덩국V"},
   {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624294", title: "조린이가 쓰는 몽매팁", author: "초오오고열용광로"},
   {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624243", title: "무과금 슬로우 유저의 몽매의 시련 - 광기에 사로잡힌 동탁 편", author: "아이누족"},
+  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/625162", title: "(시간없는 분들을 위한) 동탁 25만딜 초간단 영상", author: "Reborn"},
 ];
 
 function loadCSS() {
@@ -41,6 +42,7 @@ function main() {
   disableContextMenu();
   loadCSS();
   const list = document.querySelector(".mongme-list");
+  list.innerHTML = "";
   GUIDE_LIST.forEach((guide) => {
     if (guide) {
       const link = document.createElement("a");
