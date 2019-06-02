@@ -42,6 +42,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "fg-loadcss": "^2.1.0",
+    "isbot": "^2.3.0",
     "jquery": "^3.4.1"
   }
 }
