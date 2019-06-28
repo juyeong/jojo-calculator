@@ -25,10 +25,19 @@ const OLD_GUIDE_LIST = [
 const GUIDE_LIST = [
     { source: "cafe", link: "https://cafe.naver.com/nexonjojo/621476", title: "논공행상 효율", author: "Berein" },
     null,
+    { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=439174", title: "몽매의 시련 안량편 (원소1) 불완전 가이드", author: "조랑보리" },
+    { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=439221", title: "몽매의 시련 문추편 (원소2) 불완전 가이드", author: "조랑보리" },
+    { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=439431", title: "몽매의 시련 원소편 (원소3) 완전 가이드", author: "조랑보리" },
+    null,
     { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=423299", title: "몽매의 시련 원술편 완전 가이드", author: "조랑보리" },
     { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=433200", title: "조린이용 몽매 공략 (60만딜 보장)", author: "400만따리" },
     { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=433047", title: "몽매의 시련 원술1편 허접한 공략(데이터)", author: "총퇴각" },
     { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=433211", title: "몽매 공략 (조린이용)", author: "Yeoul" },
+    { source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=437399", title: "몽매 성안에서 패기 자리잡기편" },
+    { source: "cafe", link: "https://cafe.naver.com/nexonjojo/632122", title: "몽매-민폐황제 원술 낭창낭창하게 100만딜 만들기", author: "찰진엉덩국V" },
+    { source: "cafe", link: "https://cafe.naver.com/nexonjojo/632154", title: "[몽매의 시련] 민폐 원술 - 167만 공략 (출진 순서 수정 + 영상 첨부)", author: "에이플러스" },
+    { source: "cafe", link: "https://cafe.naver.com/nexonjojo/632250", title: "[아이누족] 무과금 슬로우 유저의 몽매의 시련 - 민폐 황제 원술 편 (131만)", author: "아이누족" },
+    { source: "cafe", link: "https://cafe.naver.com/nexonjojo/632704", title: "자부진인" },
 ];
 function loadCSS() {
     fg.loadCSS("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css", null, null, {
