@@ -55,7 +55,7 @@
     "skill4": "연속 책략",
     "passive1": "군량 보관 특화",
     "passive2": "연주 징세 보조",
-    "order": 60
+    "order": 98
   },
   {
     "id": 4,
@@ -74,8 +74,7 @@
     "skill3": "권토중래",
     "skill4": "일기당천",
     "passive1": "과수 특화",
-    "passive2": "모의전 보조",
-    "order_temp": 50
+    "passive2": "모의전 보조"
   },
   {
     "id": 5,
@@ -275,8 +274,7 @@
     "skill4info": "70%",
     "passive1": "은전 징세 특화",
     "passive2": "은전 징세 보조",
-    "aka": "쓰마이",
-    "order": 80
+    "aka": "쓰마이"
   },
   {
     "id": 15,
@@ -351,7 +349,7 @@
     "skill4": "일치단결",
     "passive1": "항만 특화",
     "passive2": "병주 약탈 보조",
-    "order": 50
+    "order": 99
   },
   {
     "id": 19,
@@ -371,7 +369,7 @@
     "skill4": "주동 공격",
     "passive1": "시장 특화",
     "passive2": "옹주(동) 징세 보조",
-    "order": 98
+    "order": 100
   },
   {
     "id": 20,
@@ -410,8 +408,7 @@
     "skill3info": "몰우전",
     "skill4": "인도 공격",
     "passive1": "시장 특화",
-    "passive2": "모의전 보조",
-    "order": 90
+    "passive2": "모의전 보조"
   },
   {
     "id": 22,
@@ -431,7 +428,7 @@
     "skill4": "일기당천",
     "passive1": "경작 특화",
     "passive2": "명품 상점 보조",
-    "order": 60
+    "order": 99
   },
   {
     "id": 23,
@@ -470,7 +467,7 @@
     "skill4": "주동 공격",
     "passive1": "항만 특화",
     "passive2": "연주 징세 보조",
-    "order": 98
+    "order": 93
   },
   {
     "id": 25,
@@ -509,8 +506,7 @@
     "skill3": "책략 모방",
     "skill4": "사신 소환",
     "passive1": "경작 특화",
-    "passive2": "기주 징세 보조",
-    "order": 90
+    "passive2": "기주 징세 보조"
   },
   {
     "id": 27,
@@ -530,8 +526,7 @@
     "skill4": "중황태을",
     "skill4info": "15%",
     "passive1": "징세의 달인",
-    "passive2": "출진 군량 보조",
-    "order": 80
+    "passive2": "출진 군량 보조"
   },
   {
     "id": 28,
@@ -850,8 +845,7 @@
     "skill4": "공격력 보조%",
     "skill4info": "15%",
     "passive1": "은전 징세 특화",
-    "passive2": "기주 징세 보조",
-    "order": 90
+    "passive2": "기주 징세 보조"
   },
   {
     "id": 44,
@@ -873,7 +867,7 @@
     "passive1": "보관의 달인",
     "passive2": "군량 징세 보조",
     "aka": "고나우",
-    "order": 93
+    "order": 100
   },
   {
     "id": 45,
@@ -1101,10 +1095,11 @@
     "com": 58,
     "dex": 82,
     "luk": 81,
-    "skill1": "주위 고양",
+    "skill1": "기합의 일격%",
+    "skill1info": "50%",
     "skill2": "방어력 보조%",
     "skill2info": "11%",
-    "skill3": "반격 강화",
+    "skill3": "상태이상 반사",
     "skill4": "회심 공격",
     "passive1": "은전 징세 특화",
     "passive2": "은전 징세 보조"
@@ -1426,8 +1421,7 @@
     "skill3info": "몰우전",
     "skill4": "무반격 공격",
     "passive1": "경작 특화",
-    "passive2": "사주 약탈 보조",
-    "order": 90
+    "passive2": "사주 약탈 보조"
   },
   {
     "id": 73,
@@ -1636,9 +1630,9 @@
     "dex": 80,
     "luk": 95,
     "skill1": "집중의 일격%",
-    "skill1info": "30%",
+    "skill1info": "50%",
     "skill2": "기합의 일격%",
-    "skill2info": "30%",
+    "skill2info": "50%",
     "skill3": "무반격 공격",
     "skill4": "공격 범위 확장",
     "skill4info": "몰우전",
@@ -1683,8 +1677,7 @@
     "skill3info": "20%",
     "skill4": "연속 책략",
     "passive1": "군량 징세 특화",
-    "passive2": "전 징세 보조",
-    "order": 96
+    "passive2": "전 징세 보조"
   },
   {
     "id": 86,
@@ -1702,7 +1695,8 @@
     "skill3": "사신 소환",
     "skill4": "상태이상 면역",
     "passive1": "공방 특화",
-    "passive2": "모의전 보조"
+    "passive2": "모의전 보조",
+    "order": 93
   },
   {
     "id": 87,
@@ -1740,8 +1734,7 @@
     "skill4": "중독 공격%",
     "skill4info": "20%",
     "passive1": "절대 보호 특화",
-    "passive2": "명품 상점 보조",
-    "order": 50
+    "passive2": "명품 상점 보조"
   },
   {
     "id": 89,
@@ -2400,7 +2393,7 @@
     "passive1": "군량 징세 특화",
     "passive2": "출진 군량 보조",
     "aka": "손제리",
-    "order": 89
+    "order": 101
   },
   {
     "id": 122,
@@ -2476,8 +2469,7 @@
     "skill3": "일격 필살",
     "skill4": "회심 공격",
     "passive1": "군량 징세 특화",
-    "passive2": "은전 징세 보조",
-    "order": 50
+    "passive2": "은전 징세 보조"
   },
   {
     "id": 126,
@@ -2538,8 +2530,7 @@
     "skill3info": "12%",
     "skill4": "방어력 하강 공격",
     "passive1": "경작 특화",
-    "passive2": "양주(남) 징세 보조",
-    "order": 50
+    "passive2": "양주(남) 징세 보조"
   },
   {
     "id": 129,
@@ -2735,7 +2726,7 @@
     "skill4": "연속 반격",
     "passive1": "군량 징세 특화",
     "passive2": "군량 약탈 보조",
-    "order": 98
+    "order": 95
   },
   {
     "id": 139,
@@ -2793,7 +2784,7 @@
     "skill4": "전화위복",
     "passive1": "보관의 달인",
     "passive2": "군량 약탈 보조",
-    "order": 100
+    "order": 95
   },
   {
     "id": 142,
@@ -3157,7 +3148,7 @@
     "skill4info": "60%",
     "passive1": "보관의 달인",
     "passive2": "군량 약탈 보조",
-    "order": 86
+    "order": 101
   },
   {
     "id": 160,
@@ -3196,8 +3187,7 @@
     "skill3": "회심 공격 면역",
     "skill4": "무반격 공격",
     "passive1": "은전 징세 특화",
-    "passive2": "군량 징세 보조",
-    "order": 90
+    "passive2": "군량 징세 보조"
   },
   {
     "id": 162,
@@ -3412,7 +3402,7 @@
     "skill2": "돌진 공격%",
     "skill2info": "3%",
     "skill3": "방어력 보조",
-    "skill3info": "30",
+    "skill3info": "130",
     "skill4": "선제 공격",
     "passive1": "수산물 특화",
     "passive2": "익주(북) 약탈 보조"
@@ -3574,8 +3564,7 @@
     "skill3": "방어력 하강 공격",
     "skill4": "일치단결",
     "passive1": "군량 징세 특화",
-    "passive2": "군량 약탈 보조",
-    "order": 50
+    "passive2": "군량 약탈 보조"
   },
   {
     "id": 181,
@@ -3915,8 +3904,7 @@
     "skill4": "연환계",
     "skill4info": "50%",
     "passive1": "군량 징세 특화",
-    "passive2": "출진 군량 보조",
-    "order": 87
+    "passive2": "출진 군량 보조"
   },
   {
     "id": 198,
@@ -4035,7 +4023,8 @@
     "skill3info": "15%",
     "skill4": "사신 소환",
     "passive1": "보관의 달인",
-    "passive2": "군량 징세 보조"
+    "passive2": "군량 징세 보조",
+    "order": 93
   },
   {
     "id": 204,
@@ -4254,8 +4243,7 @@
     "skill4": "소패왕",
     "skill4info": "3%",
     "passive1": "은전 징세 특화",
-    "passive2": "전 약탈 보조",
-    "order": 50
+    "passive2": "전 약탈 보조"
   },
   {
     "id": 215,
@@ -4316,8 +4304,7 @@
     "skill3info": "12%",
     "skill4": "방어력 하강 공격",
     "passive1": "군량 징세 특화",
-    "passive2": "교주 징세 보조",
-    "order": 88
+    "passive2": "교주 징세 보조"
   },
   {
     "id": 218,
@@ -4495,8 +4482,7 @@
     "skill4": "전 방어율 증가",
     "skill4info": "7%",
     "passive1": "보관의 달인",
-    "passive2": "군량 징세 보조",
-    "order": 50
+    "passive2": "군량 징세 보조"
   },
   {
     "id": 227,
@@ -4678,7 +4664,7 @@
     "skill4info": "20%",
     "passive1": "징세의 달인",
     "passive2": "군량 징세 보조",
-    "order": 80
+    "order": 98
   },
   {
     "id": 236,
@@ -4716,8 +4702,7 @@
     "skill3": "인도 공격",
     "skill4": "주동 공격",
     "passive1": "은전 징세 특화",
-    "passive2": "은전 약탈 보조",
-    "order": 96
+    "passive2": "은전 약탈 보조"
   },
   {
     "id": 238,
@@ -4755,8 +4740,7 @@
     "skill3": "주위 강행",
     "skill4": "사신 소환",
     "passive1": "은전 징세 특화",
-    "passive2": "은전 징세 보조",
-    "order": 50
+    "passive2": "은전 징세 보조"
   },
   {
     "id": 240,
@@ -5293,7 +5277,7 @@
     "skill4": "연속 공격 면역",
     "passive1": "경작 특화",
     "passive2": "형주(남) 약탈 보조",
-    "order": 50
+    "order": 98
   },
   {
     "id": 267,
@@ -5432,8 +5416,7 @@
     "skill4": "만인지적",
     "skill4info": "10%",
     "passive1": "군량 징세 특화",
-    "passive2": "전 약탈 보조",
-    "order": 50
+    "passive2": "전 약탈 보조"
   },
   {
     "id": 274,
@@ -5469,8 +5452,7 @@
     "skill3": "연속 반격",
     "skill4": "무반격 공격",
     "passive1": "은전 징세 특화",
-    "passive2": "군량 약탈 보조",
-    "order": 50
+    "passive2": "군량 약탈 보조"
   },
   {
     "id": 276,
@@ -5841,8 +5823,7 @@
     "skill4": "금마초",
     "skill4info": "10%",
     "passive1": "은전 징세 특화",
-    "passive2": "은전 약탈 보조",
-    "order": 50
+    "passive2": "은전 약탈 보조"
   },
   {
     "id": 295,
@@ -5920,7 +5901,7 @@
     "skill2": "돌진 공격%",
     "skill2info": "3%",
     "skill3": "방어력 보조",
-    "skill3info": "30",
+    "skill3info": "130",
     "skill4": "무반격 공격",
     "passive1": "과수 특화",
     "passive2": "명품 상점 보조"
@@ -5937,7 +5918,7 @@
     "dex": 72,
     "luk": 79,
     "skill1": "방어력 보조",
-    "skill1info": "25",
+    "skill1info": "110",
     "skill2": "공격력 보조%",
     "skill2info": "11%",
     "skill3": "주위 욕설",
@@ -5981,7 +5962,7 @@
     "skill1info": "7%",
     "skill2": "주위 욕설",
     "skill3": "방어력 보조",
-    "skill3info": "30",
+    "skill3info": "130",
     "skill4": "돌진 공격%",
     "skill4info": "4%",
     "passive1": "공방 특화",
@@ -6065,8 +6046,7 @@
     "skill3info": "10%",
     "skill4": "재반격",
     "passive1": "항만 특화",
-    "passive2": "옹주(서) 징세 보조",
-    "order": 50
+    "passive2": "옹주(서) 징세 보조"
   },
   {
     "id": 306,
@@ -6190,7 +6170,7 @@
     "passive2": "전 약탈 보조",
     "desc": "마왕",
     "aka": "마갈,마갈량",
-    "order": 93
+    "order": 101
   },
   {
     "id": 312,
@@ -6226,8 +6206,7 @@
     "skill3": "연속 책략 면역",
     "skill4": "재반격",
     "passive1": "은전 징세 특화",
-    "passive2": "은전 약탈 보조",
-    "order": 97
+    "passive2": "은전 약탈 보조"
   },
   {
     "id": 314,
@@ -6247,8 +6226,7 @@
     "skill3info": "10%",
     "skill4": "전화위복",
     "passive1": "경작 특화",
-    "passive2": "옹주(서) 약탈 보조",
-    "order": 50
+    "passive2": "옹주(서) 약탈 보조"
   },
   {
     "id": 315,
@@ -6808,8 +6786,7 @@
     "skill4": "주동 공격",
     "passive1": "과수 특화",
     "passive2": "무역 상점 보조",
-    "aka": "아이유",
-    "order": 90
+    "aka": "아이유"
   },
   {
     "id": 343,
@@ -6944,8 +6921,7 @@
     "skill3": "주동 공격",
     "skill4": "회심 공격 강화",
     "passive1": "징세의 달인",
-    "passive2": "전 징세 보조",
-    "order": 80
+    "passive2": "전 징세 보조"
   },
   {
     "id": 350,
@@ -6965,7 +6941,7 @@
     "skill4": "연속 책략",
     "passive1": "은전 징세 특화",
     "passive2": "출진 군량 보조",
-    "order": 88
+    "order": 97
   },
   {
     "id": 351,
@@ -6984,8 +6960,7 @@
     "skill3info": "10%",
     "skill4": "주동 공격",
     "passive1": "징세의 달인",
-    "passive2": "형주(북) 약탈 보조",
-    "order": 80
+    "passive2": "형주(북) 약탈 보조"
   },
   {
     "id": 352,
@@ -7003,8 +6978,7 @@
     "skill3": "반격 강화",
     "skill4": "회심 공격",
     "passive1": "보관의 달인",
-    "passive2": "군량 약탈 보조",
-    "order": 50
+    "passive2": "군량 약탈 보조"
   },
   {
     "id": 353,
@@ -7042,8 +7016,7 @@
     "skill3info": "12%",
     "skill4": "지원 공격",
     "passive1": "시장 특화",
-    "passive2": "익주(중) 징세 보조",
-    "order": 89
+    "passive2": "익주(중) 징세 보조"
   },
   {
     "id": 355,
@@ -7360,8 +7333,7 @@
     "skill4": "돌진 공격%",
     "skill4info": "4%",
     "passive1": "징세의 달인",
-    "passive2": "은전 징세 보조",
-    "order": 50
+    "passive2": "은전 징세 보조"
   },
   {
     "id": 371,
@@ -7416,7 +7388,7 @@
     "skill4": "방어 능력 전환",
     "passive1": "은전 징세 특화",
     "passive2": "은전 약탈 보조",
-    "order": 50
+    "order": 96
   },
   {
     "id": 374,
@@ -7475,8 +7447,7 @@
     "skill3info": "7%",
     "skill4": "일치단결",
     "passive1": "경작 특화",
-    "passive2": "형주(북) 약탈 보조",
-    "order": 50
+    "passive2": "형주(북) 약탈 보조"
   },
   {
     "id": 377,
@@ -7769,7 +7740,7 @@
     "passive1": "군량 징세 특화",
     "passive2": "전 징세 보조",
     "aka": "착갈,착갈량,런갈량",
-    "order": 99
+    "order": 94
   },
   {
     "id": 392,
@@ -7829,8 +7800,7 @@
     "skill3info": "15%",
     "skill4": "방어 능력 전환",
     "passive1": "보관의 달인",
-    "passive2": "군량 징세 보조",
-    "order": 86
+    "passive2": "군량 징세 보조"
   },
   {
     "id": 395,
@@ -8597,7 +8567,7 @@
     "skill4": "간접 공격 면역",
     "passive1": "은전 징세 특화",
     "passive2": "전 약탈 보조",
-    "order": 100
+    "order": 98
   },
   {
     "id": 434,
@@ -8780,7 +8750,8 @@
     "skill3info": "15%",
     "skill4": "연속 공격 면역",
     "passive1": "군량 보관 특화",
-    "passive2": "사주 징세 보조"
+    "passive2": "사주 징세 보조",
+    "order": 96
   },
   {
     "id": 443,
@@ -9227,8 +9198,7 @@
     "passive1": "시장 특화",
     "passive2": "이주 약탈 보조+",
     "desc": "청년",
-    "aka": "검후돈,청년하후돈",
-    "order": 94
+    "aka": "검후돈,청년하후돈"
   },
   {
     "id": 465,
@@ -9249,7 +9219,7 @@
     "passive1": "견직 특화",
     "passive2": "전 징세 보조",
     "aka": "변씨",
-    "order": 50
+    "order": 97
   },
   {
     "id": 466,
@@ -9270,7 +9240,7 @@
     "skill4info": "1",
     "passive1": "군량 징세 특화",
     "passive2": "전 징세 보조",
-    "order": 50
+    "order": 100
   },
   {
     "id": 467,
@@ -9292,7 +9262,7 @@
     "passive2": "군량 징세 보조",
     "desc": "고대",
     "aka": "장자방",
-    "order": 99
+    "order": 100
   },
   {
     "id": 468,
@@ -9312,8 +9282,7 @@
     "skill4": "다다익선",
     "skill4info": "4%",
     "passive1": "징세의 달인",
-    "passive2": "이주 약탈 보조+",
-    "order": 50
+    "passive2": "이주 약탈 보조+"
   },
   {
     "id": 469,
@@ -9332,7 +9301,7 @@
     "skill4": "사신 소환",
     "passive1": "시장 특화",
     "passive2": "출진 군량 보조",
-    "order": 50
+    "order": 94
   },
   {
     "id": 470,
@@ -9372,7 +9341,7 @@
     "passive1": "견직 특화",
     "passive2": "정찰 보조",
     "aka": "하우영",
-    "order": 100
+    "order": 99
   },
   {
     "id": 472,
@@ -9391,7 +9360,8 @@
     "skill3": "역전용사",
     "skill4": "전화위복",
     "passive1": "양돈 특화",
-    "passive2": "예주 약탈 보조"
+    "passive2": "예주 약탈 보조",
+    "order": 95
   },
   {
     "id": 473,
@@ -9489,7 +9459,7 @@
     "skill4": "갈퀴 공격",
     "passive1": "경작 특화",
     "passive2": "점령 보조",
-    "order": 100
+    "order": 93
   },
   {
     "id": 478,
@@ -9529,7 +9499,7 @@
     "passive1": "징세의 달인",
     "passive2": "이주 약탈 보조+",
     "aka": "항우",
-    "order": 100
+    "order": 101
   },
   {
     "id": 480,
@@ -9605,8 +9575,7 @@
     "skill3": "일격 필살",
     "skill4": "돌격 이동",
     "passive1": "공방 특화",
-    "passive2": "출진 군량 보조",
-    "order": 90
+    "passive2": "출진 군량 보조"
   },
   {
     "id": 484,
@@ -9626,8 +9595,7 @@
     "skill3info": "3%",
     "skill4": "주동 공격",
     "passive1": "항만 특화",
-    "passive2": "양주(남) 징세 보조",
-    "order": 90
+    "passive2": "양주(남) 징세 보조"
   },
   {
     "id": 485,
@@ -9670,7 +9638,7 @@
     "skill4info": "30%",
     "passive1": "수산물 특화",
     "passive2": "명품 상점 보조",
-    "order": 90
+    "order": 99
   },
   {
     "id": 487,
@@ -9709,7 +9677,7 @@
     "skill4info": "30%",
     "passive1": "시장 특화",
     "passive2": "사주 징세 보조",
-    "order": 100
+    "order": 98
   },
   {
     "id": 489,
@@ -9751,7 +9719,7 @@
     "passive1": "공방 특화",
     "passive2": "점령 보조",
     "aka": "향백",
-    "order": 90
+    "order": 97
   },
   {
     "id": 491,
@@ -9772,8 +9740,7 @@
     "skill4info": "20%",
     "passive1": "공방 특화",
     "passive2": "기주 징세 보조",
-    "aka": "오마이걸",
-    "order": 101
+    "aka": "오마이걸"
   },
   {
     "id": 492,
@@ -9790,11 +9757,10 @@
     "skill1info": "15%",
     "skill2": "MP 절약%",
     "skill2info": "25%",
-    "skill3": "회심 면역",
+    "skill3": "회심 공격 면역",
     "skill4": "주위 기합",
     "passive1": "견직 특화",
-    "passive2": "전 징세 보조",
-    "order": 101
+    "passive2": "전 징세 보조"
   },
   {
     "id": 493,
@@ -9814,8 +9780,7 @@
     "skill4": "돌진 공격%",
     "skill4info": "3%",
     "passive1": "징세의 달인",
-    "passive2": "전 약탈 보조",
-    "order": 101
+    "passive2": "전 약탈 보조"
   },
   {
     "id": 494,
@@ -9834,8 +9799,7 @@
     "skill3": "일격 필살",
     "skill4": "장거리 궁술",
     "passive1": "항만 특화",
-    "passive2": "연주 징세 보조",
-    "order": 101
+    "passive2": "연주 징세 보조"
   },
   {
     "id": 495,
@@ -9855,7 +9819,193 @@
     "skill3info": "7%",
     "skill4": "전화위복",
     "passive1": "시장 특화",
-    "passive2": "무역 상점 보조",
-    "order": 101
+    "passive2": "무역 상점 보조"
+  },
+  {
+    "id": 496,
+    "name": "가남풍",
+    "class": "마왕",
+    "origin": "마왕재림",
+    "cost": 21,
+    "str": 65,
+    "int": 86,
+    "com": 59,
+    "dex": 68,
+    "luk": 72,
+    "skill1": "흡수 책략%",
+    "skill1info": "10%",
+    "skill2": "본대 각성",
+    "skill3": "사신 보옥 착용",
+    "skill4": "풍계 책략 특화%",
+    "skill4info": "20%",
+    "passive1": "군량 징세 특화",
+    "passive2": "전 징세 보조",
+    "order": 50
+  },
+  {
+    "id": 497,
+    "name": "백영",
+    "class": "도독",
+    "origin": "마왕재림",
+    "cost": 20,
+    "str": 67,
+    "int": 87,
+    "com": 79,
+    "dex": 82,
+    "luk": 61,
+    "skill1": "책략 명중률 증가",
+    "skill1info": "15%",
+    "skill2": "일책 필살",
+    "skill3": "공격 능력 전환",
+    "skill4": "책략 모방",
+    "passive1": "은전 징세 특화",
+    "passive2": "은전 징세 보조",
+    "order": 50
+  },
+  {
+    "id": 498,
+    "name": "사마충",
+    "class": "전차",
+    "origin": "마왕재림",
+    "cost": 18,
+    "str": 48,
+    "int": 21,
+    "com": 55,
+    "dex": 68,
+    "luk": 89,
+    "skill1": "물리 피해 감소%",
+    "skill1info": "10%",
+    "skill2": "사기 보조%",
+    "skill2info": "30%",
+    "skill3": "본대 패기",
+    "skill4": "주위 견고",
+    "passive1": "항만 특화",
+    "passive2": "출진 군량 보조",
+    "order": 50
+  },
+  {
+    "id": 499,
+    "name": "가충",
+    "class": "도사",
+    "origin": "마왕재림",
+    "cost": 19,
+    "str": 49,
+    "int": 89,
+    "com": 73,
+    "dex": 43,
+    "luk": 71,
+    "skill1": "방해계 책략 강화%",
+    "skill1info": "15%",
+    "skill2": "연속 공격 면역",
+    "skill3": "회심 공격 면역",
+    "skill4": "사신 소환",
+    "passive1": "경작 특화",
+    "passive2": "익주(북) 징세 보조",
+    "order": 50
+  },
+  {
+    "id": 500,
+    "name": "사마륜",
+    "class": "전차",
+    "origin": "마왕재림",
+    "cost": 17,
+    "str": 61,
+    "int": 63,
+    "com": 60,
+    "dex": 80,
+    "luk": 84,
+    "skill1": "방어력 보조%",
+    "skill1info": "10%",
+    "skill2": "돌진 공격%",
+    "skill2info": "3%",
+    "skill3": "혼란 공격%",
+    "skill3info": "30%",
+    "skill4": "회심 공격",
+    "passive1": "과수 특화",
+    "passive2": "명품 상점 보조",
+    "order": 50
+  },
+  {
+    "id": 501,
+    "name": "곽여왕",
+    "class": "군주",
+    "origin": "난세여걸",
+    "cost": 19,
+    "str": 73,
+    "int": 85,
+    "com": 81,
+    "dex": 83,
+    "luk": 89,
+    "skill1": "기합의 일격%",
+    "skill1info": "50%",
+    "skill2": "피해 범위 확장",
+    "skill2info": "이격",
+    "skill3": "견고의 일격%",
+    "skill3info": "50%",
+    "skill4": "일치단결",
+    "passive1": "시장 특화",
+    "passive2": "사주 징세 보조",
+    "order": 50
+  },
+  {
+    "id": 502,
+    "name": "장세연",
+    "class": "중기병",
+    "origin": "난세여걸",
+    "cost": 21,
+    "str": 85,
+    "int": 58,
+    "com": 83,
+    "dex": 88,
+    "luk": 62,
+    "skill1": "연속 반격",
+    "skill2": "인도 공격",
+    "skill3": "분노 축적%",
+    "skill3info": "20%",
+    "skill4": "역전용사",
+    "passive1": "견직 특화",
+    "passive2": "익주(중) 징세 보조",
+    "order": 50
+  },
+  {
+    "id": 503,
+    "name": "정안",
+    "class": "적병",
+    "origin": "난세여걸",
+    "cost": 19,
+    "str": 81,
+    "int": 57,
+    "com": 80,
+    "dex": 89,
+    "luk": 60,
+    "skill1": "방어력 보조%",
+    "skill1info": "10%",
+    "skill2": "본대 강행",
+    "skill3": "전화위복",
+    "skill4": "피해 범위 확장",
+    "skill4info": "이격",
+    "passive1": "징세의 달인",
+    "passive2": "형주(북) 징세 보조",
+    "order": 50
+  },
+  {
+    "id": 504,
+    "name": "강희",
+    "class": "창병",
+    "origin": "난세여걸",
+    "cost": 19,
+    "str": 80,
+    "int": 53,
+    "com": 78,
+    "dex": 85,
+    "luk": 70,
+    "skill1": "물리 피해 감소%",
+    "skill1info": "10%",
+    "skill2": "정신력 하강 공격",
+    "skill3": "공격 범위 확장",
+    "skill4": "돌파 공격",
+    "passive1": "경작 특화",
+    "passive2": "형주(남) 징세 보조",
+    "order": 50
   }
 ]
