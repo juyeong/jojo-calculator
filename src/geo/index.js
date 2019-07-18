@@ -8,7 +8,7 @@ var get = Reflect.get;
 const util_1 = require("../util");
 const ALL_COLUMNS = Object.keys(geoData[0]);
 const UNIT_TYPES = geoData.map((row) => row["병종"]);
-const BATTLEFIELD = [
+const BATTLEGROUND = [
     { type: "", fields: ["병종", "격전지"] },
     { type: "중광", fields: ["산지", "완류"] },
     { type: "북광", fields: ["설원", "숲"] },
@@ -16,7 +16,7 @@ const BATTLEFIELD = [
     { type: "서광", fields: ["사막", "평지"] },
     { type: "동광", fields: ["초원", "설원"] },
 ];
-const COMPETITIVE = [
+const GATES = [
     { type: "", fields: ["병종"] },
     { type: "난투장", fields: ["난투장"] },
     { type: "산지 (익주)", fields: ["산지", "숲"] },
@@ -26,13 +26,21 @@ const COMPETITIVE = [
     { type: "도성 (사주)", fields: ["성내", "가옥"] },
     { type: "장강 (양주)", fields: ["완류", "습지"] },
 ];
-const CHALLENGE = [
+const ANNIHILATION = [
     { type: "", fields: ["병종"] },
     { type: "초원의 관문", fields: ["평지"] },
     { type: "사막의 관문", fields: ["황무지", "사막"] },
     { type: "산지의 관문", fields: ["산지", "숲"] },
     { type: "완류의 관문", fields: ["완류"] },
     { type: "설원의 관문", fields: ["설원"] }
+];
+const OFFICER = [
+    { type: "", fields: ["병종"] },
+    { type: "태양의 결투장", fields: ["태양"] },
+    { type: "창천의 결투장", fields: ["창천"] },
+    { type: "신록의 결투장", fields: ["신록"] },
+    { type: "혹한의 결투장", fields: ["혹한"] },
+    { type: "영웅의 결투장", fields: ["결투장"] }
 ];
 function ready(fn) {
     if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -79,6 +87,7 @@ function getBody(types) {
                             break;
                         case "난투장":
                         case "격전지":
+                        case "결투장":
                             highlight = stat > 200;
                             break;
                         default:
@@ -112,10 +121,11 @@ function updateTable(id, types) {
     table.innerHTML = `<table class="table">${html}</table>`;
 }
 function main() {
-    updateTable("#geo-table-battlefield", BATTLEFIELD);
-    updateTable("#geo-table-competitive", COMPETITIVE);
-    updateTable("#geo-table-challenge", CHALLENGE);
-    onClick("battlefield");
+    updateTable("#geo-table-battleground", BATTLEGROUND);
+    updateTable("#geo-table-gates", GATES);
+    updateTable("#geo-table-annihilation", ANNIHILATION);
+    updateTable("#geo-table-officer", OFFICER);
+    onClick("battleground");
     addListeners();
     addNavListener();
     util_1.disableContextMenu();
@@ -145,26 +155,31 @@ function addListeners() {
     });
 }
 function onClick(buttonId) {
-    let battlefieldDiv = document.querySelector('#geo-table-battlefield');
-    let competitiveDiv = document.querySelector('#geo-table-competitive');
-    let challengeDiv = document.querySelector('#geo-table-challenge');
-    let allDivs = [battlefieldDiv, competitiveDiv, challengeDiv];
+    let battlegroundDiv = document.querySelector('#geo-table-battleground');
+    let gatesDiv = document.querySelector('#geo-table-gates');
+    let annihilationDiv = document.querySelector('#geo-table-annihilation');
+    let officerDiv = document.querySelector('#geo-table-officer');
+    let allDivs = [battlegroundDiv, gatesDiv, annihilationDiv, officerDiv];
     const List = window.List;
     if (!List) {
         console.log("List not fount");
         setTimeout(() => onClick(buttonId), 100);
     }
-    else if (buttonId === 'battlefield') {
+    else if (buttonId === 'battleground') {
         allDivs.forEach((div) => div.classList.add("d-none"));
-        battlefieldDiv.classList.remove("d-none");
+        battlegroundDiv.classList.remove("d-none");
     }
-    else if (buttonId === 'competitive') {
+    else if (buttonId === 'gates') {
         allDivs.forEach((div) => div.classList.add("d-none"));
-        competitiveDiv.classList.remove("d-none");
+        gatesDiv.classList.remove("d-none");
     }
-    else if (buttonId === 'challenge') {
+    else if (buttonId === 'annihilation') {
         allDivs.forEach((div) => div.classList.add("d-none"));
-        challengeDiv.classList.remove("d-none");
+        annihilationDiv.classList.remove("d-none");
+    }
+    else if (buttonId === 'officer') {
+        allDivs.forEach((div) => div.classList.add("d-none"));
+        officerDiv.classList.remove("d-none");
     }
     try {
         new List(`geo-table-${buttonId}`, { valueNames: ALL_COLUMNS });
