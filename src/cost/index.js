@@ -1,9 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("babel-polyfill");
+const axios = require('axios').default;
 require("./index.css");
 const util_1 = require("../util");
-const commanderData = require("./characters");
+let commanderData;
 const HAS_LOCAL_STORAGE = window.localStorage;
 function ready(fn) {
     if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -23,7 +24,7 @@ function main() {
         return state;
     }
     function setState(newState) {
-        return (state = Object.assign({}, getState(), newState));
+        return (state = Object.assign(Object.assign({}, getState()), newState));
     }
     function getCharacterInformation(id) {
         return commanderData.find((commander) => id === commander.id);
@@ -65,11 +66,15 @@ function main() {
     function loadState() {
         if (HAS_LOCAL_STORAGE) {
             let ids = window.localStorage.getItem("ids");
-            if (ids != null) {
-                return ids.split(",").map(id => parseInt(id));
+            if (ids) {
+                const savedIds = ids.split(",").map(id => parseInt(id));
+                if (savedIds.length > 0 && savedIds.every(id => id > 1000000)) {
+                    return savedIds;
+                }
             }
         }
-        return [491, 492, 493, 494, 495];
+        return shuffle([1100001, 1100002, 1100003, 1100004, 1100005, 1100006, 1100007, 1100008, 1100009, 1100010, 1100011, 1100012, 1100013, 1100014, 1100015, 1100016, 1100017, 1100018, 1100019, 1100020, 1100021, 1100022, 1100023, 1100024, 1100025, 1100026, 1100171])
+            .slice(0, 5);
     }
     function getNewSaveId() {
         if (HAS_LOCAL_STORAGE) {
@@ -108,7 +113,8 @@ function main() {
         return localStorage.getItem(key)
             .split(',')
             .map(id => parseInt(id, 10))
-            .map(id => getCharacterInformation(id));
+            .map(id => getCharacterInformation(id))
+            .filter(character => character);
     }
     function addNavListener() {
         document.querySelectorAll(".nav-link")
@@ -240,5 +246,20 @@ function main() {
     util_1.disableContextMenu();
     util_1.registerServiceWorker();
 }
-ready(main);
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+function fetchCharacters() {
+    axios.get("https://public.jy.is/caocao/characters.json")
+        .then((resp) => {
+        commanderData = resp.data;
+        main();
+    })
+        .catch(() => window.location.href = "/");
+}
+ready(fetchCharacters);
 //# sourceMappingURL=index.js.map

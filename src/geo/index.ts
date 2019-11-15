@@ -114,14 +114,14 @@ function getBody(types: IField[]) {
 
 function updateTable(id: string, types: IField[]) {
   const head1 = getHead1(types);
-  const haed2 = getHead2(types);
+  const head2 = getHead2(types);
   const rows = getBody(types);
   const html = `<thead>
     <tr>
        ${head1}
     </tr>
     <tr>
-      ${haed2}
+      ${head2}
     </tr>
     <tbody class="list">
     <tr>
