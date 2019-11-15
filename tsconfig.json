@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "allowUnusedLabels": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
