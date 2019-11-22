@@ -1,8 +1,10 @@
 import {disableContextMenu, registerServiceWorker} from "../util";
+import axios from 'axios';
+
+const isBot = require("isBot");
+const fg = require("fg-loadcss");
 
 require("./mongme.css");
-const fg = require("fg-loadcss");
-const isBot = require("isBot");
 
 function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boolean) => void) {
   if ((document as any).attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
@@ -12,30 +14,48 @@ function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boole
   }
 }
 
-const OLD_GUIDE_LIST: IGuideLink[] = [
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=415437", title: "내성 여는 조건", author: "조링조링"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=415684", title: "50만 몽매 출진장수 및 자리 참고용"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=415562", title: "[스압]몽매 동탁 개인 공략 1"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=415563", title: "[스압]몽매 동탁 개인 공략 2"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624456", title: "[몽매-동탁] 조조, 아린, 지원궁기 활용하여 44.5만딜", author: "찰진엉덩국V"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624294", title: "조린이가 쓰는 몽매팁", author: "초오오고열용광로"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/624243", title: "무과금 슬로우 유저의 몽매의 시련 - 광기에 사로잡힌 동탁 편", author: "아이누족"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/625162", title: "(시간없는 분들을 위한) 동탁 25만딜 초간단 영상", author: "Reborn"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=433200", title: "조린이용 몽매 공략 (60만딜 보장)", author: "400만따리"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=433047", title: "몽매의 시련 원술1편 허접한 공략(데이터)", author: "총퇴각"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=433211", title: "몽매 공략 (조린이용)", author: "Yeoul"},
-  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&no=437399", title: "몽매 성안에서 패기 자리잡기편"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/632122", title: "몽매-민폐황제 원술 낭창낭창하게 100만딜 만들기", author: "찰진엉덩국V"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/632154", title: "[몽매의 시련] 민폐 원술 - 167만 공략 (출진 순서 수정 + 영상 첨부)", author: "에이플러스"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/632250", title: "[아이누족] 무과금 슬로우 유저의 몽매의 시련 - 민폐 황제 원술 편 (131만)", author: "아이누족"},
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/632704", title: "가짜 황제 원술 230만 공략 및 Tip.", author: "자부진인"},
-];
-
-const GUIDE_LIST: IGuideLink[] = [
+const BOT_GUIDE_LIST: IGuideLink[] = [
   {source: "cafe", link: "https://cafe.naver.com/nexonjojo/621476", title: "논공행상 효율", author: "Berein"},
-  null,
-  {source: "cafe", link: "https://cafe.naver.com/nexonjojo/642234", title: "100만딜 공략 기보", author: "Berein"},
-  {source: "dc", link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&no=22229", title: "몽매 122만 공략", author: "400만따리"},
+  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&amp;no=419747", title: "몽매의 시련 HP 변화기"},
+  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&amp;no=402180", title: "몽매의 시련 장각편 인연 정리"},
+  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&amp;no=411084", title: "몽매의 시련 동탁편 완전 가이드"},
+  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&amp;no=423299", title: "몽매의 시련 원술편 완전 가이드"},
+  {source: "dc", link: "https://gall.dcinside.com/board/view/?id=zohong&amp;no=423303", title: "몽매의 시련 원소편 인연 장수들"},
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=3002",
+    title: "몽매의 시련 원소편 완전 가이드"
+  },
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=11868",
+    title: "몽매의 시련 엄백호편 완전 가이드"
+  },
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=25719",
+    title: "몽매의 시련 손권편 (진격의 손권) 완전 가이드"
+  },
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=25757",
+    title: "몽매의 시련 손권편 (패주의 손권) 완전 가이드"
+  },
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=27184",
+    title: "몽매의 시련 하후연편 (최후의 질풍) 불완전 가이드"
+  },
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=48501",
+    title: "몽매의 시련 조인편 (현군의 조인) 완전 가이드"
+  },
+  {
+    source: "dc",
+    link: "https://gall.dcinside.com/mgallery/board/view/?id=johong&amp;no=48563",
+    title: "몽매의 시련 조인편 (번성의 조인) 완전 가이드"
+  },
 ];
 
 function loadCSS() {
@@ -75,9 +95,29 @@ function createListItem(guide: IGuideLink) {
 function main() {
   registerServiceWorker();
   disableContextMenu();
+  loadCSS();
   const list = document.querySelector(".mongme-list");
+  renderItems(list, []);
+  if (isBot(navigator.userAgent)) {
+    renderItems(list, BOT_GUIDE_LIST);
+  } else {
+    showLoading();
+    axios.get<IGuideLink[]>('https://bo0tc0zpia.execute-api.ap-northeast-2.amazonaws.com/prod/mongme')
+      .then((response) => renderItems(list, response.data))
+      .catch(() => renderItems(list, BOT_GUIDE_LIST));
+  }
+}
+
+function showLoading() {
+  document.querySelector('.spinner').classList.remove('invisible')
+}
+
+function hideLoading() {
+  document.querySelector('.spinner').classList.add('invisible')
+}
+
+function renderItems(list: Element, allItems: IGuideLink[]) {
   list.innerHTML = "";
-  const allItems = isBot(navigator.userAgent) ? [].concat(...GUIDE_LIST, ...OLD_GUIDE_LIST) : GUIDE_LIST;
   allItems.forEach((guide: IGuideLink) => {
     if (guide) {
       list.appendChild(createListItem(guide));
@@ -87,7 +127,7 @@ function main() {
       list.appendChild(li);
     }
   });
-  loadCSS();
+  hideLoading();
 }
 
 interface IGuideLink {
