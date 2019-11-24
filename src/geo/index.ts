@@ -1,4 +1,5 @@
 import "babel-polyfill";
+
 require("html-loader!./index.ejs");
 require("./geo.css");
 
@@ -8,6 +9,12 @@ import {disableContextMenu, registerServiceWorker} from "../util";
 
 const ALL_COLUMNS: string[] = Object.keys(geoData[0]);
 const UNIT_TYPES: string[] = geoData.map((row) => row["병종"]);
+const TAB_HASH = {
+  ANNIHILATION: "annihilation",
+  BATTLEGROUND: "battleground",
+  GATES: "gates",
+  OFFICER: "officer"
+};
 const BATTLEGROUND: IField[] = [
   {type: "", fields: ["병종", "격전지"]},
   {type: "중광", fields: ["산지", "완류"]},
@@ -129,16 +136,34 @@ function updateTable(id: string, types: IField[]) {
     </tr>
     </tbody>`;
   const table = document.querySelector(id);
+  table.classList.add("d-none");
   table.innerHTML = `<table class="table">${html}</table>`;
 }
 
+function getDefaultTab() {
+  if (location.hash) {
+    const element = document.querySelector<HTMLElement>(location.hash + '-tab');
+    if (element) {
+      return element;
+    }
+  }
+  return document.getElementById("battleground-tab");
+}
+
+function handleHash() {
+  const tab = getDefaultTab();
+  if (tab) {
+    setTimeout(() => tab.click(), 100);
+  }
+}
+
 function main() {
-  updateTable("#geo-table-battleground", BATTLEGROUND);
-  updateTable("#geo-table-gates", GATES);
-  updateTable("#geo-table-annihilation", ANNIHILATION);
-  updateTable("#geo-table-officer", OFFICER);
-  onClick("battleground");
   addListeners();
+  updateTable("#geo-table-battleground-tab", BATTLEGROUND);
+  updateTable("#geo-table-gates-tab", GATES);
+  updateTable("#geo-table-annihilation-tab", ANNIHILATION);
+  updateTable("#geo-table-officer-tab", OFFICER);
+  handleHash();
   addNavListener();
   disableContextMenu();
   registerServiceWorker();
@@ -171,27 +196,31 @@ function addListeners() {
 }
 
 function onClick(buttonId: string) {
-  let battlegroundDiv = document.querySelector('#geo-table-battleground');
-  let gatesDiv = document.querySelector('#geo-table-gates');
-  let annihilationDiv = document.querySelector('#geo-table-annihilation');
-  let officerDiv = document.querySelector('#geo-table-officer');
+  let battlegroundDiv = document.querySelector('#geo-table-battleground-tab');
+  let gatesDiv = document.querySelector('#geo-table-gates-tab');
+  let annihilationDiv = document.querySelector('#geo-table-annihilation-tab');
+  let officerDiv = document.querySelector('#geo-table-officer-tab');
   let allDivs = [battlegroundDiv, gatesDiv, annihilationDiv, officerDiv];
   const List = (window as any).List;
   if (!List) {
     console.log("List not fount");
     setTimeout(() => onClick(buttonId), 100);
-  } else if (buttonId === 'battleground') {
+  } else if (buttonId === 'battleground-tab') {
     allDivs.forEach((div) => div.classList.add("d-none"));
     battlegroundDiv.classList.remove("d-none");
-  } else if (buttonId === 'gates') {
+    window.location.hash = TAB_HASH.BATTLEGROUND;
+  } else if (buttonId === 'gates-tab') {
     allDivs.forEach((div) => div.classList.add("d-none"));
     gatesDiv.classList.remove("d-none");
-  } else if (buttonId === 'annihilation') {
+    window.location.hash = TAB_HASH.GATES;
+  } else if (buttonId === 'annihilation-tab') {
     allDivs.forEach((div) => div.classList.add("d-none"));
     annihilationDiv.classList.remove("d-none");
-  } else if (buttonId === 'officer') {
+    window.location.hash = TAB_HASH.ANNIHILATION;
+  } else if (buttonId === 'officer-tab') {
     allDivs.forEach((div) => div.classList.add("d-none"));
     officerDiv.classList.remove("d-none");
+    window.location.hash = TAB_HASH.OFFICER;
   }
   try {
     new List(`geo-table-${buttonId}`, {valueNames: ALL_COLUMNS});
