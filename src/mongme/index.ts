@@ -72,6 +72,7 @@ function loadCSS() {
 function createListItem(guide: IGuideLink) {
   const link = document.createElement("a");
   link.href = guide.link;
+  link.onclick = _ev => ga('send', 'event', 'Link', 'Clicks', guide.link);
   link.target = "_href";
   link.className = "list-group-item list-group-item-action";
   const favicon = document.createElement("img");
