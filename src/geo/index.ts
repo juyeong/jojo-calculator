@@ -1,14 +1,15 @@
 import "babel-polyfill";
+import axios from 'axios';
 
 require("html-loader!./index.ejs");
 require("./geo.css");
 
-import * as geoData from "./geo_data.json";
-import get = Reflect.get;
 import {disableContextMenu, registerServiceWorker} from "../util";
 
-const ALL_COLUMNS: string[] = Object.keys(geoData[0]);
-const UNIT_TYPES: string[] = geoData.map((row) => row["병종"]);
+const ALL_COLUMNS: string[] = ["병종", "성내", "잔도", "산지", "설원", "황무지", "사막", "평지", "숲", "습지", "초원", "완류", "빙판", "가옥", "난투장", "격전지", "결투장", "태양", "신록", "창천", "혹한", "능선", "나루"];
+const UNIT_TYPES: string[] = ["군주", "보병", "궁병", "노병", "창병", "경기병", "중기병", "산악기병", "궁기병", "포차", "무인", "적병", "책사", "풍수사", "도사", "무희", "전차", "수군", "웅술사", "호술사", "도독", "현자", "마왕", "검사", "군악대", "천자", "노전차", "효기병"];
+const GEO_DATA = [];
+
 const TAB_HASH = {
   ANNIHILATION: "annihilation",
   BATTLEGROUND: "battleground",
@@ -95,7 +96,10 @@ function getBody(types: IField[]) {
         if (field === "병종") {
           return `<th scope="row" class="${unitType} ${field}">${unitType}</th>`;
         } else {
-          const stat = getStat(unitType, field) || 0;
+          const stat = getStat(unitType, field);
+          if (!stat) {
+            return `<td class="${unitType} ${field}$">-</td>`;
+          }
           let highlight: boolean;
           switch (field) {
             case "평지":
@@ -153,25 +157,44 @@ function getDefaultTab() {
 function handleHash() {
   const tab = getDefaultTab();
   if (tab) {
-    setTimeout(() => tab.click(), 100);
+    tab.click();
+  }
+}
+
+function updateContents() {
+  axios.get("https://b6lhivo3t3.execute-api.ap-northeast-2.amazonaws.com/prod/geo")
+    .then((response) => updateTables(response.data))
+    .catch(e => console.error(e));
+}
+
+function updateTables(geoData = undefined) {
+  if (geoData) {
+    GEO_DATA.push(...geoData);
+  }
+  updateTable("#geo-table-battleground-tab", BATTLEGROUND);
+  updateTable("#geo-table-gates-tab", GATES);
+  updateTable("#geo-table-annihilation-tab", ANNIHILATION);
+  updateTable("#geo-table-officer-tab", OFFICER);
+  if (geoData) {
+    handleHash();
   }
 }
 
 function main() {
   addListeners();
-  updateTable("#geo-table-battleground-tab", BATTLEGROUND);
-  updateTable("#geo-table-gates-tab", GATES);
-  updateTable("#geo-table-annihilation-tab", ANNIHILATION);
-  updateTable("#geo-table-officer-tab", OFFICER);
-  handleHash();
+  updateTables();
+  updateContents();
   addNavListener();
   disableContextMenu();
   registerServiceWorker();
 }
 
 function getStat(unitType: string, field: string): number {
-  const row = geoData.find((row) => row["병종"] === unitType);
-  return get(row, field);
+  if (GEO_DATA.length === 0) return;
+  const row = GEO_DATA.find((row) => row["병종"] === unitType);
+  if (row) {
+    return row[field];
+  }
 }
 
 function addNavListener() {
