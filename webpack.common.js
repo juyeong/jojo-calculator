@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const RobotsTxtPlugin = require("robotstxt-webpack-plugin");
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 
 const HOSTNAME = "https://jojo.jy.is";
 
@@ -38,15 +38,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|svg|jpe?g|gif)$/,
         loader: 'file-loader',
         options: {
           outputPath: 'images',
+          esModule: false,
         }
-      }
+      },
     ]
   },
   plugins: [

@@ -17,9 +17,9 @@ module.exports = merge(common, {
   optimization: {
     occurrenceOrder: false,
     minimize: false,
+    noEmitOnErrors: true,
   },
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ]
 });

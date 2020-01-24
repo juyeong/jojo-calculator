@@ -8,7 +8,7 @@ module.exports = merge(common, {
   mode: "production",
   optimization: {
     occurrenceOrder: true,
-    minimize: true,
+    minimize: false,
   },
   plugins: [
     new CopyWebpackPlugin([
