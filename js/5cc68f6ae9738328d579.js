@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 368);
+/******/ 	return __webpack_require__(__webpack_require__.s = 364);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11413,7 +11413,7 @@ module.exports = function (url, options) {
 /* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "images/935328a483fbcb79ed621ce5c6d5c0bc.png";
+module.exports = __webpack_require__.p + "images/apple-icon.png?935328a483fbcb79ed621ce5c6d5c0bc";
 
 /***/ }),
 /* 359 */,
@@ -11421,19 +11421,15 @@ module.exports = __webpack_require__.p + "images/935328a483fbcb79ed621ce5c6d5c0b
 /* 361 */,
 /* 362 */,
 /* 363 */,
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
-/* 368 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(126);
-module.exports = __webpack_require__(369);
+module.exports = __webpack_require__(365);
 
 
 /***/ }),
-/* 369 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11441,52 +11437,10 @@ module.exports = __webpack_require__(369);
 Object.defineProperty(exports, "__esModule", { value: true });
 __webpack_require__(126);
 const axios_1 = __webpack_require__(339);
-__webpack_require__(370);
-__webpack_require__(371);
+__webpack_require__(366);
 const util_1 = __webpack_require__(336);
-const ALL_COLUMNS = ["병종", "성내", "잔도", "산지", "설원", "황무지", "사막", "평지", "숲", "습지", "초원", "완류", "빙판", "가옥", "난투장", "격전지", "결투장", "태양", "신록", "창천", "혹한", "능선", "나루"];
-const UNIT_TYPES = ["군주", "보병", "궁병", "노병", "창병", "경기병", "중기병", "산악기병", "궁기병", "포차", "무인", "적병", "책사", "풍수사", "도사", "무희", "전차", "수군", "웅술사", "호술사", "도독", "현자", "마왕", "검사", "군악대", "천자", "노전차", "효기병"];
-const GEO_DATA = [];
-const TAB_HASH = {
-    ANNIHILATION: "annihilation",
-    BATTLEGROUND: "battleground",
-    GATES: "gates",
-    OFFICER: "officer"
-};
-const BATTLEGROUND = [
-    { type: "", fields: ["병종", "격전지"] },
-    { type: "중광", fields: ["산지", "완류"] },
-    { type: "북광", fields: ["설원", "숲"] },
-    { type: "남광", fields: ["완류", "황무지"] },
-    { type: "서광", fields: ["사막", "평지"] },
-    { type: "동광", fields: ["초원", "설원"] },
-];
-const GATES = [
-    { type: "", fields: ["병종"] },
-    { type: "난투장", fields: ["난투장"] },
-    { type: "산지 (익주)", fields: ["산지", "숲"] },
-    { type: "설원 (병주)", fields: ["설원", "빙판"] },
-    { type: "초원 (기주)", fields: ["평지", "초원"] },
-    { type: "사막 (옹주)", fields: ["황무지", "사막"] },
-    { type: "도성 (사주)", fields: ["성내", "가옥"] },
-    { type: "장강 (양주)", fields: ["완류", "습지"] },
-];
-const ANNIHILATION = [
-    { type: "", fields: ["병종"] },
-    { type: "초원의 관문", fields: ["평지"] },
-    { type: "사막의 관문", fields: ["황무지", "사막"] },
-    { type: "산지의 관문", fields: ["산지", "숲"] },
-    { type: "완류의 관문", fields: ["완류"] },
-    { type: "설원의 관문", fields: ["설원"] }
-];
-const OFFICER = [
-    { type: "", fields: ["병종"] },
-    { type: "태양의 결투장", fields: ["태양"] },
-    { type: "창천의 결투장", fields: ["창천"] },
-    { type: "신록의 결투장", fields: ["신록"] },
-    { type: "혹한의 결투장", fields: ["혹한"] },
-    { type: "영웅의 결투장", fields: ["결투장"] }
-];
+let commanderData;
+const HAS_LOCAL_STORAGE = window.localStorage;
 function ready(fn) {
     if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
         fn();
@@ -11495,215 +11449,262 @@ function ready(fn) {
         document.addEventListener("DOMContentLoaded", fn);
     }
 }
-function getHead1(types) {
-    return types.reduce((acc, val) => {
-        const active = acc.toggle ? ` class="table-active"` : "";
-        return {
-            value: acc.value + `\n<td colspan="${val.fields.length}"${active}>${val.type}</td>`,
-            toggle: !acc.toggle
-        };
-    }, { value: "", toggle: false }).value;
-}
-function getHead2(types) {
-    return types.reduce((acc, val) => ({
-        value: acc.value + val.fields.map((field) => {
-            const order = field === "병종" ? "asc" : "desc";
-            const active = acc.toggle ? " table-active" : "";
-            return `<th scope="col" class="sort${active}" data-sort="${field}" data-order="${order}">${field}</th>`;
-        }).join("\n"),
-        toggle: !acc.toggle
-    }), { value: "", toggle: false }).value;
-}
-function getBody(types) {
-    return UNIT_TYPES.map((unitType) => {
-        return types.reduce((acc, val) => {
-            let value = acc;
-            value += val.fields.map((field) => {
-                if (field === "병종") {
-                    return `<th scope="row" class="${unitType} ${field}">${unitType}</th>`;
-                }
-                else {
-                    const stat = getStat(unitType, field);
-                    if (!stat) {
-                        return `<td class="${unitType} ${field}$">-</td>`;
-                    }
-                    let highlight;
-                    switch (field) {
-                        case "평지":
-                        case "초원":
-                            highlight = stat > 100;
-                            break;
-                        case "난투장":
-                        case "격전지":
-                        case "결투장":
-                            highlight = stat > 200;
-                            break;
-                        default:
-                            highlight = stat >= 100;
-                            break;
-                    }
-                    return `<td class="${unitType} ${field}${highlight ? " table-success" : ""}">${stat.toFixed(0)}</td>`;
-                }
-            }).join("\n");
-            return value;
-        }, "");
-    });
-}
-function updateTable(id, types) {
-    const head1 = getHead1(types);
-    const head2 = getHead2(types);
-    const rows = getBody(types);
-    const html = `<thead>
-    <tr>
-       ${head1}
-    </tr>
-    <tr>
-      ${head2}
-    </tr>
-    <tbody class="list">
-    <tr>
-      ${rows.join("</tr>\n<tr>")}
-    </tr>
-    </tbody>`;
-    const table = document.querySelector(id);
-    table.classList.add("d-none");
-    table.innerHTML = `<table class="table">${html}</table>`;
-}
-function getDefaultTab() {
-    if (location.hash) {
-        const element = document.querySelector(location.hash + '-tab');
-        if (element) {
-            return element;
+function main() {
+    let state = {
+        selectedCharacters: [],
+        totalCost: 0,
+    };
+    let inDefaultUpdate = false;
+    function getState() {
+        return state;
+    }
+    function setState(newState) {
+        return (state = Object.assign(Object.assign({}, getState()), newState));
+    }
+    function getCharacterInformation(id) {
+        return commanderData.find((commander) => id === commander.id);
+    }
+    function getTotalCost(commanders) {
+        return commanders.reduce((acc, val) => {
+            return acc + val.cost;
+        }, 0);
+    }
+    function getDisplayName(commander) {
+        return commander.desc == null ? commander.name : `${commander.name} ${commander.desc}`;
+    }
+    function getActiveCharacterNodes() {
+        return getState()
+            .selectedCharacters.map(char => {
+            return `<li class="list-group-item">
+          <div style="margin-bottom: 2px;">
+            <strong>${char.name}</strong> | ${char.class} | ${char.cost} cost
+          </div>
+          <div class=".text-dark" style="font-size: 0.9em;">
+            ${char.skill1} | ${char.skill2} | ${char.skill3} | ${char.skill4}
+          </div>
+        </li>`;
+        })
+            .join("");
+    }
+    function setStateAndRender(newState) {
+        setState({
+            selectedCharacters: newState,
+            totalCost: getTotalCost(newState),
+        });
+        renderCharacters();
+    }
+    function saveState() {
+        if (HAS_LOCAL_STORAGE) {
+            window.localStorage.setItem("ids", getState().selectedCharacters.map(commander => commander.id).join(","));
         }
     }
-    return document.getElementById("battleground-tab");
-}
-function handleHash() {
-    const tab = getDefaultTab();
-    if (tab) {
-        tab.click();
+    function loadState() {
+        if (HAS_LOCAL_STORAGE) {
+            let ids = window.localStorage.getItem("ids");
+            if (ids) {
+                const savedIds = ids.split(",").map(id => parseInt(id));
+                if (savedIds.length > 0 && savedIds.every(id => id > 1000000)) {
+                    return savedIds;
+                }
+            }
+        }
+        return shuffle([1100001, 1100002, 1100003, 1100004, 1100005, 1100006, 1100007, 1100008, 1100009, 1100010, 1100011, 1100012, 1100013, 1100014, 1100015, 1100016, 1100017, 1100018, 1100019, 1100020, 1100021, 1100022, 1100023, 1100024, 1100025, 1100026, 1100171])
+            .slice(0, 5);
     }
-}
-function updateContents() {
-    axios_1.default.get("https://b6lhivo3t3.execute-api.ap-northeast-2.amazonaws.com/prod/geo")
-        .then((response) => updateTables(response.data))
-        .catch(e => console.error(e));
-}
-function updateTables(geoData = undefined) {
-    if (geoData) {
-        GEO_DATA.push(...geoData);
+    function getNewSaveId() {
+        if (HAS_LOCAL_STORAGE) {
+            const id = window.localStorage.getItem("_id");
+            let idNum = 1;
+            if (id != null) {
+                idNum = parseInt(id, 10) + 1;
+            }
+            window.localStorage.setItem("_id", `${idNum}`);
+            return idNum;
+        }
     }
-    updateTable("#geo-table-battleground-tab", BATTLEGROUND);
-    updateTable("#geo-table-gates-tab", GATES);
-    updateTable("#geo-table-annihilation-tab", ANNIHILATION);
-    updateTable("#geo-table-officer-tab", OFFICER);
-    if (geoData) {
-        handleHash();
+    function saveCharacters(id, characters) {
+        if (characters.length == 0) {
+            return;
+        }
+        const ids = characters.map((c) => c.id).join(',');
+        window.localStorage.setItem(`saved_${id}`, `${ids}`);
     }
-}
-function main() {
-    addListeners();
-    updateTables();
-    updateContents();
+    function deleteCharacters(id) {
+        window.localStorage.removeItem(id);
+    }
+    function getSavedCharacterKeys() {
+        const localStorage = window.localStorage;
+        const keys = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key.startsWith('saved_')) {
+                keys.push(key);
+            }
+        }
+        return keys.sort((key1, key2) => key1 < key2 ? 1 : -1);
+    }
+    function getSavedCharacter(key) {
+        const localStorage = window.localStorage;
+        return localStorage.getItem(key)
+            .split(',')
+            .map(id => parseInt(id, 10))
+            .map(id => getCharacterInformation(id))
+            .filter(character => character);
+    }
+    function addNavListener() {
+        document.querySelectorAll(".nav-link")
+            .forEach((nav) => {
+            nav.addEventListener("click", () => {
+                const item = nav.getAttribute("data-item");
+                ga('send', 'event', 'Nav', 'Click', item);
+            });
+        });
+    }
+    function addSaveListener() {
+        document.querySelector('.commander-save').addEventListener('click', () => {
+            const savedKeys = getSavedCharacterKeys();
+            if (savedKeys.length >= 100) {
+                alert("최대 100개 까지 저장 가능");
+                return;
+            }
+            const saveId = getNewSaveId();
+            const characters = getState().selectedCharacters;
+            saveCharacters(saveId, characters);
+            renderSavedCharacters();
+        });
+    }
+    let select = $(".commander-input").selectize({
+        maxItems: 7,
+        hideSelected: true,
+        valueField: "id",
+        render: {
+            item: function (char) {
+                return `<div>${getDisplayName(char)}</div>`;
+            },
+            option: function (char) {
+                return `<div>${getDisplayName(char)}</div>`;
+            }
+        },
+        searchField: ["name", "desc", "aka"],
+        maxOptions: 9999,
+        sortField: {
+            field: "order",
+            direction: "desc"
+        },
+        options: commanderData,
+        create: false,
+        diacritics: true,
+        onItemAdd(value) {
+            const id = parseInt(value);
+            const char = getCharacterInformation(id);
+            const newState = getState().selectedCharacters.concat([char]);
+            setStateAndRender(newState);
+            if (!inDefaultUpdate) {
+                saveState();
+                ga('send', 'event', 'Character', 'Select', `${char.id}_${getDisplayName(char)}`);
+            }
+        },
+        onItemRemove(value) {
+            const id = parseInt(value);
+            const state = getState();
+            const index = state.selectedCharacters.findIndex(char => char.id === id);
+            if (index >= 0) {
+                const prevArr = state.selectedCharacters.slice(0, index);
+                const nextArr = state.selectedCharacters.slice(index + 1);
+                const newState = prevArr.concat(nextArr);
+                setStateAndRender(newState);
+                saveState();
+            }
+        },
+    });
+    function renderCharacters() {
+        if (inDefaultUpdate)
+            return;
+        const listParentNode = document.querySelector(".active-characters");
+        listParentNode.innerHTML = getActiveCharacterNodes();
+        const totalCostNode = document.querySelector(".total-cost-wrapper");
+        const totalCostValue = getState().totalCost;
+        let style;
+        if (totalCostValue > 145) {
+            style = "list-group-item-danger";
+        }
+        else if (totalCostValue > 99) {
+            style = "list-group-item-warning";
+        }
+        else {
+            style = "list-group-item-success";
+        }
+        totalCostNode.innerHTML = `
+    <div class="list-group-item list-group-item-action ${style}">
+    총 COST : ${totalCostValue}
+  </div>
+  `;
+    }
+    function renderSavedCharacters() {
+        const listParentNode = document.querySelector(".saved-characters");
+        const savedKeys = getSavedCharacterKeys();
+        listParentNode.innerHTML =
+            savedKeys.map((key) => {
+                let characters = getSavedCharacter(key);
+                return [key, characters.map(character => character.name).join(", "), characters.map(character => character.cost).reduce((acc, val) => val + acc, 0)];
+            })
+                .map((arr) => {
+                const key = arr[0];
+                const line = arr[1];
+                const cost = arr[2];
+                return `<li class="list-group-item" style="padding-bottom: 0;">[${cost}] ${line}<div style="display: flex; justify-content: flex-end">
+<!--<button type="button" class="btn btn-link">공유</button>-->
+<button type="button" class="saved-delete btn btn-link" data-key="${key}">삭제</button>
+</div>
+</li>`;
+            })
+                .join('');
+        const deleteButtons = document.querySelectorAll('.saved-delete');
+        for (let i = 0; i < deleteButtons.length; i++) {
+            const button = deleteButtons[i];
+            button.addEventListener('click', () => {
+                deleteCharacters(button.getAttribute('data-key'));
+                renderSavedCharacters();
+            });
+        }
+    }
+    function setDefaultItems() {
+        inDefaultUpdate = true;
+        select[0].selectize.setValue(loadState());
+        inDefaultUpdate = false;
+        renderCharacters();
+    }
+    window.setTimeout(() => setDefaultItems(), 0);
+    addSaveListener();
     addNavListener();
+    window.setTimeout(() => renderSavedCharacters(), 0);
     util_1.disableContextMenu();
     util_1.registerServiceWorker();
 }
-function getStat(unitType, field) {
-    if (GEO_DATA.length === 0)
-        return;
-    const row = GEO_DATA.find((row) => row["병종"] === unitType);
-    if (row) {
-        return row[field];
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
     }
+    return arr;
 }
-function addNavListener() {
-    document.querySelectorAll(".nav-link")
-        .forEach((nav) => {
-        nav.addEventListener("click", () => {
-            const item = nav.getAttribute("data-item");
-            ga('send', 'event', 'Nav', 'Click', item);
-        });
-    });
+function fetchCharacters() {
+    axios_1.default.get("https://public.jy.is/caocao/characters.json")
+        .then((resp) => {
+        commanderData = resp.data;
+        main();
+    })
+        .catch(() => window.location.href = "/");
 }
-function addListeners() {
-    let radioButtons = document.querySelectorAll('input[type=radio]');
-    radioButtons.forEach((button) => {
-        button.addEventListener('focus', () => {
-            let buttonId = button.id;
-            onClick(buttonId);
-            ga('send', 'event', 'Filter', 'Geo', buttonId);
-        });
-    });
-}
-function onClick(buttonId) {
-    let battlegroundDiv = document.querySelector('#geo-table-battleground-tab');
-    let gatesDiv = document.querySelector('#geo-table-gates-tab');
-    let annihilationDiv = document.querySelector('#geo-table-annihilation-tab');
-    let officerDiv = document.querySelector('#geo-table-officer-tab');
-    let allDivs = [battlegroundDiv, gatesDiv, annihilationDiv, officerDiv];
-    const List = window.List;
-    if (!List) {
-        console.log("List not fount");
-        setTimeout(() => onClick(buttonId), 100);
-    }
-    else if (buttonId === 'battleground-tab') {
-        allDivs.forEach((div) => div.classList.add("d-none"));
-        battlegroundDiv.classList.remove("d-none");
-        window.location.hash = TAB_HASH.BATTLEGROUND;
-    }
-    else if (buttonId === 'gates-tab') {
-        allDivs.forEach((div) => div.classList.add("d-none"));
-        gatesDiv.classList.remove("d-none");
-        window.location.hash = TAB_HASH.GATES;
-    }
-    else if (buttonId === 'annihilation-tab') {
-        allDivs.forEach((div) => div.classList.add("d-none"));
-        annihilationDiv.classList.remove("d-none");
-        window.location.hash = TAB_HASH.ANNIHILATION;
-    }
-    else if (buttonId === 'officer-tab') {
-        allDivs.forEach((div) => div.classList.add("d-none"));
-        officerDiv.classList.remove("d-none");
-        window.location.hash = TAB_HASH.OFFICER;
-    }
-    try {
-        new List(`geo-table-${buttonId}`, { valueNames: ALL_COLUMNS });
-    }
-    catch (e) {
-        if (!isConstructor(List)) {
-            console.log("List is not constructor");
-            setTimeout(() => onClick(buttonId), 100);
-        }
-        else {
-            console.error(`onClick(${buttonId})`, e);
-        }
-    }
-}
-function isConstructor(o) {
-    try {
-        new o();
-        return true;
-    }
-    catch (e) {
-        return false;
-    }
-}
-ready(main);
+ready(fetchCharacters);
 
 
 /***/ }),
-/* 370 */
-/***/ (function(module, exports) {
-
-module.exports = "<!DOCTYPE html>\r\n<html lang=\"ko\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n  <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\r\n  <title>지형상성 - 삼국지 조조전 온라인</title>\r\n  <meta name=\"Description\" content=\"섬멸전/경쟁전/격전지/천리행 지형상성 - 삼국지 조조전 온라인\">\r\n  <meta property=\"og:type\" content=\"website\">\r\n  <meta property=\"og:title\" content=\"지형상성 - 삼국지 조조전 온라인\">\r\n  <meta property=\"og:description\" content=\"섬멸전/경쟁전/격전지/천리행 지형상성 - 삼국지 조조전 온라인\">\r\n  <meta property=\"og:url\" content=\"https://jojo.jy.is/geo/\">\r\n  <meta property=\"og:image\" content=\"https://jojo.jy.is<%= require(\"../images/og.jpg\") %>\">\r\n  <meta property=\"og:image:width\" content=\"690\">\r\n  <meta property=\"og:image:height\" content=\"360\">\r\n  <link rel=\"manifest\" href=\"/manifest.json\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"57x57\" href=\"<%= require(\"../images/apple-icon-57x57.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"60x60\" href=\"<%= require(\"../images/apple-icon-60x60.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"72x72\" href=\"<%= require(\"../images/apple-icon-72x72.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"76x76\" href=\"<%= require(\"../images/apple-icon-76x76.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"114x114\" href=\"<%= require(\"../images/apple-icon-114x114.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"120x120\" href=\"<%= require(\"../images/apple-icon-120x120.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"144x144\" href=\"<%= require(\"../images/apple-icon-144x144.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"152x152\" href=\"<%= require(\"../images/apple-icon-152x152.png\") %>\">\r\n  <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"<%= require(\"../images/apple-icon-180x180.png\") %>\">\r\n  <link rel=\"icon\" type=\"image/png\" sizes=\"192x192\" href=\"<%= require(\"../images/android-icon-192x192.png\") %>\">\r\n  <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"<%= require(\"../images/favicon-32x32.png\") %>\">\r\n  <link rel=\"icon\" type=\"image/png\" sizes=\"96x96\" href=\"<%= require(\"../images/favicon-96x96.png\") %>\">\r\n  <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"<%= require(\"../images/favicon-16x16.png\") %>\">\r\n  <meta name=\"msapplication-TileColor\" content=\"#ffffff\">\r\n  <meta name=\"msapplication-TileImage\" content=\"<%= require(\"../images/ms-icon-144x144.png\") %>\">\r\n  <meta name=\"theme-color\" content=\"#ffffff\">\r\n\r\n  <script async src=\"https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js\"\r\n          integrity=\"sha256-YqOIp4MygNx9/lcWr5lpcR88Ki/MNMWvJJkH0eK+fHM=\" crossorigin=\"anonymous\"></script>\r\n  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css\"\r\n        integrity=\"sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=\" crossorigin=\"anonymous\"/>\r\n  <script src=\"https://code.jquery.com/jquery-3.3.1.min.js\"\r\n          integrity=\"sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=\"\r\n          crossorigin=\"anonymous\"></script>\r\n  <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js\"\r\n          integrity=\"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49\"\r\n          crossorigin=\"anonymous\"></script>\r\n  <script async src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js\"\r\n          integrity=\"sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=\" crossorigin=\"anonymous\"></script>\r\n  <!-- Google Analytics -->\r\n  <!--suppress CommaExpressionJS -->\r\n  <script>\r\n    (function (i, s, o, g, r, a, m) {\r\n      i['GoogleAnalyticsObject'] = r;\r\n      i[r] = i[r] || function () {\r\n        (i[r].q = i[r].q || []).push(arguments)\r\n      }, i[r].l = 1 * new Date();\r\n      a = s.createElement(o),\r\n        m = s.getElementsByTagName(o)[0];\r\n      a.async = 1;\r\n      a.src = g;\r\n      m.parentNode.insertBefore(a, m)\r\n    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');\r\n\r\n    ga('create', 'UA-112737939-2', 'auto');\r\n    var ua = navigator.userAgent;\r\n    if (!ua) {\r\n      ga('set', 'dimension1', 'unknown');\r\n    } else if (ua.indexOf(\"KAKAOTALK\") >= 0) {\r\n      ga('set', 'dimension1', 'kakaotalk');\r\n    } else if (ua.indexOf(\"NAVER\") >= 0 && ua.indexOf(\"cafe;\") >= ua.indexOf(\"NAVER\")) {\r\n      ga('set', 'dimension1', 'navercafe');\r\n    } else {\r\n      ga('set', 'dimension1', 'other');\r\n    }\r\n    ga('send', 'pageview');\r\n  </script>\r\n  <!-- End Google Analytics -->\r\n</head>\r\n\r\n<body>\r\n<nav class=\"navbar navbar-expand-sm navbar-light bg-light\">\r\n  <a class=\"navbar-brand navbar-img\" href=\"/\">\r\n    <span class=\"navbar-img-text\">탕수육</span>\r\n  </a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\r\n          aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n    <ul class=\"navbar-nav\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" data-item=\"Cost\" href=\"/cost\">코스트 계산기</a>\r\n      </li>\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" data-item=\"Geo\" href=\"#\">지형상성표 <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" data-item=\"Bot\" target=\"_blank\" href=\"https://bit.ly/bot_caocao4\"\r\n           rel=\"noopener\">탕수육봇</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n\r\n<div class=\"container-fluid\" style=\"margin-top: 20px; max-width: 900px;\">\r\n  <div style=\"text-align: center; margin-bottom: 30px;\">\r\n    <strong>\r\n      삼국지 조조전 온라인 지형상성표\r\n    </strong>\r\n  </div>\r\n\r\n  <div style=\"margin: 10px auto 30px auto; text-align: center\">\r\n    <div class=\"btn-group btn-group-sm btn-group-toggle\" data-toggle=\"buttons\">\r\n      <label class=\"btn btn-outline-secondary\">\r\n        <input type=\"radio\" id=\"battleground-tab\" autocomplete=\"off\"> 격전지\r\n      </label>\r\n      <label class=\"btn btn-outline-secondary\">\r\n        <input type=\"radio\" id=\"gates-tab\" autocomplete=\"off\"> 섬멸전\r\n      </label>\r\n      <label class=\"btn btn-outline-secondary\">\r\n        <input type=\"radio\" id=\"annihilation-tab\" autocomplete=\"off\"> 천리행\r\n      </label>\r\n      <label class=\"btn btn-outline-secondary\">\r\n        <input type=\"radio\" id=\"officer-tab\" autocomplete=\"off\"> 무장전\r\n      </label>\r\n    </div>\r\n  </div>\r\n  <!-- 격전지 -->\r\n  <div id=\"geo-table-battleground-tab\" class=\"table-responsive-lg text-center\"></div>\r\n  <!-- 천리행 -->\r\n  <div id=\"geo-table-gates-tab\" class=\"table-responsive-lg text-center\"></div>\r\n  <!-- 섬멸전/경쟁전 -->\r\n  <div id=\"geo-table-annihilation-tab\" class=\"table-responsive-lg text-center\"></div>\r\n  <!-- 무장전 -->\r\n  <div id=\"geo-table-officer-tab\" class=\"table-responsive-lg text-center\"></div>\r\n</div>\r\n</body>\r\n\r\n</html>\r\n";
-
-/***/ }),
-/* 371 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(337);
-            var content = __webpack_require__(372);
+            var content = __webpack_require__(367);
 
             content = content.__esModule ? content.default : content;
 
@@ -11725,7 +11726,7 @@ var exported = content.locals ? content.locals : {};
 module.exports = exported;
 
 /***/ }),
-/* 372 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
@@ -11735,7 +11736,7 @@ var ___CSS_LOADER_URL_IMPORT_0___ = __webpack_require__(358);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_0___);
 // Module
-exports.push([module.i, "table {\n    font-size: 14px;\n}\n\n@media (max-width: 36em) {\n    table {\n        font-size: 12px;\n    }\n}\n\n.navbar-img {\n    width: 30px;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-size: 30px 30px;\n    height: 30px;\n}\n\n.navbar-img-text {\n    width: 1px;\n    overflow: hidden;\n    height: 1px;\n    position: absolute;\n}", ""]);
+exports.push([module.i, ".selectize-dropdown-content > div {\n    padding: 6px;\n}\n\n.selectize-input {\n    border: 0;\n    overflow: unset;\n}\n\n.selectize-input.focus {\n    box-shadow: none;\n}\n\n.navbar-img {\n    width: 30px;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-size: 30px 30px;\n    height: 30px;\n}\n\n.navbar-img-text {\n    width: 1px;\n    overflow: hidden;\n    height: 1px;\n    position: absolute;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
