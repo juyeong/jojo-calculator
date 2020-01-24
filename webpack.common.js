@@ -46,6 +46,7 @@ module.exports = {
         options: {
           outputPath: 'images',
           esModule: false,
+          name: '[name].[ext]?[contenthash]',
         }
       },
     ]
