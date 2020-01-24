@@ -11,9 +11,20 @@ function ready(fn) {
         document.addEventListener("DOMContentLoaded", fn);
     }
 }
+function updateBodyHeight() {
+    const innerHeight = window.innerHeight;
+    if (innerHeight && innerHeight > 0) {
+        document.body.style.height = `${innerHeight}px`;
+    }
+}
+function registerWindowReizeListener() {
+    window.addEventListener("resize", () => updateBodyHeight());
+}
 function main() {
     util_1.registerServiceWorker();
     util_1.disableContextMenu();
+    registerWindowReizeListener();
+    updateBodyHeight();
 }
 ready(main);
 //# sourceMappingURL=index.js.map

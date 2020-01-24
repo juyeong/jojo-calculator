@@ -11,9 +11,22 @@ function ready(fn: (EventListenerOrEventListenerObject?: any, useCapture?: boole
   }
 }
 
+function updateBodyHeight() {
+  const innerHeight = window.innerHeight;
+  if (innerHeight && innerHeight > 0) {
+    document.body.style.height = `${innerHeight}px`;
+  }
+}
+
+function registerWindowReizeListener() {
+  window.addEventListener("resize", () => updateBodyHeight());
+}
+
 function main() {
   registerServiceWorker();
   disableContextMenu();
+  registerWindowReizeListener();
+  updateBodyHeight();
 }
 
 ready(main);
